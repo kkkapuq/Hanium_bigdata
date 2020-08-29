@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/main_toptext">
+    </ImageView>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_searchbar"
+            android:id="@+id/edt_Url"
+            android:layout_centerVertical="true"
+            android:hint="URL을 입력해주세요"
+            android:layout_gravity="center_vertical">
+        </EditText>
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/edt_Url"
+        android:layout_marginRight="10dp"
+        android:background="#00ff0000"
+        >
+
+    </Button>
+</RelativeLayout>

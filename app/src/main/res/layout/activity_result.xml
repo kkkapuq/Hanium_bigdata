@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TabHost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="여기에 기사 제목"
+            android:gravity="center"
+            android:textSize="30dp">
+        </TextView>
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#67d868">
+        </TabWidget>
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+            <ImageView
+                android:id="@+id/Total"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/total_ex2">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/Keyword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/keyword_ex">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/Emotion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/emotion_ex">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/Etc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/etc_ex">
+            </ImageView>
+        </FrameLayout>
+    </LinearLayout>
+</TabHost>
