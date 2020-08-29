@@ -9,6 +9,7 @@ class LoadingActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
         startLoading()
+        //test
     }
 
     private fun startLoading() {
