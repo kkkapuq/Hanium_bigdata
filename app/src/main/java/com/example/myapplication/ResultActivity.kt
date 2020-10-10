@@ -28,8 +28,9 @@ class ResultActivity : Activity() {
         sexRateChart.isDrawHoleEnabled = false
         sexRateChart.setHoleColor(Color.BLACK)
         sexRateChart.transparentCircleRadius = 61f
-        
-        //testtest
+
+        //test입니다!
+
         val sexValues = ArrayList<PieEntry>() // 데이터 삽입
         sexValues.add(PieEntry(63f,"남성"))
         sexValues.add(PieEntry(37f,"여성"))
