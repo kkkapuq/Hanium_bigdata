@@ -2,9 +2,7 @@ package com.example.myapplication
 
 import android.app.Activity
 import android.graphics.Color
-import android.graphics.Color.red
 import android.os.Bundle
-import android.service.autofill.FillContext
 import android.widget.TabHost
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.animation.Easing
@@ -14,7 +12,6 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.github.mikephil.charting.utils.ColorTemplate
 import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity : Activity() {
@@ -28,8 +25,6 @@ class ResultActivity : Activity() {
         sexRateChart.isDrawHoleEnabled = false
         sexRateChart.setHoleColor(Color.BLACK)
         sexRateChart.transparentCircleRadius = 61f
-
-        //test입니다!
 
         val sexValues = ArrayList<PieEntry>() // 데이터 삽입
         sexValues.add(PieEntry(63f,"남성"))
@@ -66,6 +61,7 @@ class ResultActivity : Activity() {
         val startColor5 = ContextCompat.getColor(this, android.R.color.holo_red_light)
         val startColor6 = ContextCompat.getColor(this, android.R.color.darker_gray)
 
+//
 //        val gradientFills: MutableList<Fill> = ArrayList()
 //        with(gradientFills) {
 //            add(Fill(startColor1))
