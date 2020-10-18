@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.service.autofill.FillContext
 import android.widget.TabHost
 import androidx.core.content.ContextCompat
+import androidx.viewpager.widget.ViewPager
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
@@ -15,10 +16,12 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity : Activity() {
 
+    /*
     fun sexRateChart(){
         //남녀 성비 그래프
         sexRateChart.setUsePercentValues(true)
@@ -223,9 +226,15 @@ class ResultActivity : Activity() {
         //부정 키워드 TOP 5
     }
 
+     */
+
+    var tabLayout: TabLayout? = null
+    var viewPager: ViewPager? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
+
+        /*
         val tabHost = findViewById<TabHost>(R.id.TabHost)
         tabHost.setup()
         //종합 탭 소스
@@ -288,5 +297,36 @@ class ResultActivity : Activity() {
         tabSpecEtc.setContent(R.id.Etc)
         tabHost.addTab(tabSpecEtc)
         tabHost.currentTab = 0
-    }
+
+         */
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_main)
+
+            tabLayout = findViewById<TabLayout>(R.id.main_tablayout)
+            viewPager = findViewById<ViewPager>(R.id.main_viewPager)
+
+            tabLayout!!.addTab(tabLayout!!.newTab().setText("Home"))
+            tabLayout!!.addTab(tabLayout!!.newTab().setText("Sport"))
+            tabLayout!!.addTab(tabLayout!!.newTab().setText("Movie"))
+            tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
+
+            val adapter = PageAdapter(this, supportFragmentManager, tabLayout!!.tabCount)
+            viewPager!!.adapter = adapter
+
+            viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+
+            tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
+                    viewPager!!.currentItem = tab.position
+                }
+                override fun onTabUnselected(tab: TabLayout.Tab) {
+
+                }
+                override fun onTabReselected(tab: TabLayout.Tab) {
+
+                }
+            })
+        }
 }
