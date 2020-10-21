@@ -7,7 +7,7 @@ import android.os.Handler;
 import org.jetbrains.annotations.Nullable;
 
 public class LoadingActivity extends Activity {
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
         startLoading();

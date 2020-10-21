@@ -1,10 +1,8 @@
 package com.example.myapplication;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -17,7 +15,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -25,19 +22,17 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
+import com.google.android.material.tabs.TabLayout;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.core.content.ContextCompat;
-import kotlin.jvm.internal.Intrinsics;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-public class ResultActivity extends Activity {
+public class ResultActivityy extends AppCompatActivity {
     public void sexRateChart(){
         PieChart sexRateChart;
         sexRateChart = findViewById(R.id.sexRateChart);
@@ -285,45 +280,28 @@ public class ResultActivity extends Activity {
         bestCommLike5.setText("21152");
         bestCommDisLike5.setText("212");
     }
+
+    private ViewPager mViewPager;
+    ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_result2);
 
-        //탭호스트 생성
-        TabHost tabHost = findViewById(R.id.TabHost);
-        tabHost.setup();
+        mViewPager = findViewById(R.id.layout_viewPager);
+        setupViewPager(mViewPager);
 
-        //종합 탭
-        TabHost.TabSpec tabSpecTotal = tabHost.newTabSpec("Total").setIndicator((CharSequence)"종합");
-        tabSpecTotal.setContent(R.id.total);
-        sexRateChart();
-        ageRateChart();
-        timeLineChart();
-        commentSetter();
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.layout_tab);
+        tabLayout.setupWithViewPager(mViewPager);
+    }
 
-        tabHost.addTab(tabSpecTotal);
+    public void setupViewPager(ViewPager viewPager) {
+        adapter.addFragment(new FragmentTotal(), "종합");
+        adapter.addFragment(new FragmentKeyword(), "키워드 분석");
+        adapter.addFragment(new FragmentEmotion(), "감정 분석");
+        adapter.addFragment(new FragmentEtc(), "기타 정보");
 
-        //키워드 분석
-        TabHost.TabSpec tabSpecKeyword = tabHost.newTabSpec("Keyword").setIndicator((CharSequence)"키워드 분석");
-        tabSpecKeyword.setContent(R.id.Keyword);
-        posKeywordChart();
-        negKeywordChart();
-
-        tabHost.addTab(tabSpecKeyword);
-
-        //감정 분석
-
-        TabHost.TabSpec tabSpecEmotion = tabHost.newTabSpec("Emotion").setIndicator((CharSequence)"감정분석");
-        tabSpecEmotion.setContent(R.id.Emotion);
-        emotionChart();
-        tabHost.addTab(tabSpecEmotion);
-
-        //기타 정보
-        TabHost.TabSpec tabSpecEtc = tabHost.newTabSpec("Etc").setIndicator((CharSequence)"기타 정보");
-        tabSpecEtc.setContent(R.id.Etc);
-        tabHost.addTab(tabSpecEtc);
-        Intrinsics.checkNotNullExpressionValue(tabHost, "tabHost");
-        tabHost.setCurrentTab(0);
+        viewPager.setAdapter(adapter);
     }
 }

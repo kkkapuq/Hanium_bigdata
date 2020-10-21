@@ -26,7 +26,7 @@ public final class MainActivity extends AppCompatActivity {
 
         btn_search.setOnClickListener((new OnClickListener() {
             public final void onClick(View it) {
-                Intent intent = new Intent(MainActivity.this.getApplicationContext(), ResultActivity.class);
+                Intent intent = new Intent(MainActivity.this.getApplicationContext(), ResultActivityy.class);
                 startActivity(intent);
             }
         }));
