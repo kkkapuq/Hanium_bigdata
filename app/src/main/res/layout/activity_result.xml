@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
         <TextView
+            android:id="@+id/newsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="여기에 기사 제목"
