@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <ImageView
         android:layout_width="250dp"
         android:layout_height="100dp"
@@ -12,6 +11,11 @@
         android:src="@drawable/main_toptext">
     </ImageView>
 
+<!--        android:id="@+id/search_bar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="200dp">-->
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,16 +25,23 @@
             android:hint="URL을 입력해주세요"
             android:layout_gravity="center_vertical">
         </EditText>
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:layout_alignRight="@+id/edt_Url"
+            android:layout_marginRight="10dp"
+            android:background="#00ff0000"/>
 
-    <Button
-        android:id="@+id/btn_search"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/edt_Url"
-        android:layout_marginRight="10dp"
-        android:background="#00ff0000"
-        >
 
-    </Button>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@+id/search_bar"
+        android:layout_marginTop="100dp">
+
+
+
+    </RelativeLayout>
 </RelativeLayout>
