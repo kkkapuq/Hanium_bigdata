@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 public final class MainActivity extends AppCompatActivity {
 
-    private String baseUrl = "http://ec2-13-209-74-171.ap-northeast-2.compute.amazonaws.com/";
+    private String baseUrl = "http://ec2-15-165-159-104.ap-northeast-2.compute.amazonaws.com/";
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

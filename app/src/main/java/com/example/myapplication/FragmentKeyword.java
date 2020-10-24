@@ -21,6 +21,12 @@ public class FragmentKeyword extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_keyword, container, false);
+        ResultActivityy resultActivityy = new ResultActivityy();
+
+        resultActivityy.posKeywordChart(view);
+        resultActivityy.negKeywordChart(view);
+
+
         return view;
     }
 }

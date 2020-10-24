@@ -21,6 +21,11 @@ public class FragmentEmotion extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_emotion, container, false);
+        ResultActivityy resultActivityy = new ResultActivityy();
+
+        resultActivityy.emotionChart(view);
+//        resultActivityy.posKeywordChart(view);
+//        resultActivityy.negKeywordChart(view);
         return view;
     }
 }
