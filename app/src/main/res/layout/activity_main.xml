@@ -10,7 +10,6 @@
         android:layout_marginTop="30dp"
         android:src="@drawable/main_toptext">
     </ImageView>
-
 <!--        android:id="@+id/search_bar"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
@@ -38,10 +37,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_below="@+id/search_bar"
+        android:layout_below="@+id/edt_Url"
         android:layout_marginTop="100dp">
 
-
-
+        <TextView
+            android:id="@+id/recArticle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="여기다 통신된 데이터"
+            android:textSize="20dp"/>
     </RelativeLayout>
 </RelativeLayout>
