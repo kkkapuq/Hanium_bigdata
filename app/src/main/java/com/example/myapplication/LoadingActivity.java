@@ -61,12 +61,12 @@ public class LoadingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
-        // 위젯에 대한 참조.
-        recArticle = findViewById(R.id.recArticle2);
-
-        // AsyncTask를 통해 HttpURLConnection 수행.
-        NetworkTask networkTask = new NetworkTask(baseUrl, null);
-        networkTask.execute();
+//        // 위젯에 대한 참조.
+//        recArticle = findViewById(R.id.recArticle2);
+//
+//        // AsyncTask를 통해 HttpURLConnection 수행.
+//        NetworkTask networkTask = new NetworkTask(baseUrl, null);
+//        networkTask.execute();
 
         startLoading();
     }

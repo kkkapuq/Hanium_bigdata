@@ -41,18 +41,284 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="긍정 키워드 TOP 5"
+                    android:text="긍정 댓글 TOP 5"
                     android:textSize="25dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"/>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp">
-                    <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/likeKeyWordChart"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/posBestCommId1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/posBestCommCon1"
+                        android:layout_below="@id/posBestCommId1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                    </com.github.mikephil.charting.charts.BarChart>
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/posBestCommCon1">
+                        <TextView
+                            android:id="@+id/posBestCommDisLike1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/posBestCommLike1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/posBestCommDisLike1"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommLike1"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommDisLike1"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/posBestCommId2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/posBestCommCon2"
+                        android:layout_below="@+id/posBestCommId2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/posBestCommCon2">
+                        <TextView
+                            android:id="@+id/posBestCommDisLike2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/posBestCommLike2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/posBestCommDisLike2"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommLike2"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommDisLike2"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/posBestCommId3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/posBestCommCon3"
+                        android:layout_below="@+id/posBestCommId3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/posBestCommCon3">
+                        <TextView
+                            android:id="@+id/posBestCommDisLike3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/posBestCommLike3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/posBestCommDisLike3"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommLike3"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommDisLike3"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/posBestCommId4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/posBestCommCon4"
+                        android:layout_below="@+id/posBestCommId4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/posBestCommCon4">
+                        <TextView
+                            android:id="@+id/posBestCommDisLike4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/posBestCommLike4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/posBestCommDisLike4"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommLike4"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommDisLike4"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/posBestCommId5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/posBestCommCon5"
+                        android:layout_below="@+id/posBestCommId5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/posBestCommCon5">
+                        <TextView
+                            android:id="@+id/posBestCommDisLike5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/posBestCommLike5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/posBestCommDisLike5"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommLike5"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/posBestCommDisLike5"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
                 </RelativeLayout>
             </LinearLayout>
             <LinearLayout
@@ -62,18 +328,284 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="부정 키워드 TOP 5"
+                    android:text="부정 댓글 TOP 5"
                     android:textSize="25dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"/>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp">
-                    <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/disLikeKeywordChart"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/negBestCommId1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/negBestCommCon1"
+                        android:layout_below="@id/negBestCommId1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                    </com.github.mikephil.charting.charts.BarChart>
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/negBestCommCon1">
+                        <TextView
+                            android:id="@+id/negBestCommDisLike1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/negBestCommLike1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/negBestCommDisLike1"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommLike1"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommDisLike1"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/negBestCommId2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/negBestCommCon2"
+                        android:layout_below="@+id/negBestCommId2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/negBestCommCon2">
+                        <TextView
+                            android:id="@+id/negBestCommDisLike2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/negBestCommLike2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/negBestCommDisLike2"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommLike2"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommDisLike2"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/negBestCommId3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/negBestCommCon3"
+                        android:layout_below="@+id/negBestCommId3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/negBestCommCon3">
+                        <TextView
+                            android:id="@+id/negBestCommDisLike3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/negBestCommLike3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/negBestCommDisLike3"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommLike3"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommDisLike3"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/negBestCommId4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/negBestCommCon4"
+                        android:layout_below="@+id/negBestCommId4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/negBestCommCon4">
+                        <TextView
+                            android:id="@+id/negBestCommDisLike4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/negBestCommLike4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/negBestCommDisLike4"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommLike4"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommDisLike4"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/negBestCommId5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textSize="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/negBestCommCon5"
+                        android:layout_below="@+id/negBestCommId5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="테\n스\n트\n입\n니\n다\n"
+                        android:textSize="15dp"
+                        android:layout_margin="10dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/negBestCommCon5">
+                        <TextView
+                            android:id="@+id/negBestCommDisLike5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비추 수"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/negBestCommLike5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/negBestCommDisLike5"
+                            android:text="따봉 수" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommLike5"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_like"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toLeftOf="@id/negBestCommDisLike5"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/comm_dislike"/>
+                    </RelativeLayout>
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

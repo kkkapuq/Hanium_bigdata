@@ -28,7 +28,6 @@ public class FragmentTotal extends Fragment {
         resultActivity.sexRateChart(view);
         resultActivity.ageRateChart(view);
         resultActivity.timeLineChart(view);
-        resultActivity.commentSetter(view);
 
         return view;
     }

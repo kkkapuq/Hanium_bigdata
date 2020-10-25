@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -22,6 +23,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.google.android.material.tabs.TabLayout;
 
@@ -50,8 +52,8 @@ public class ResultActivity extends AppCompatActivity {
         sexRateChart.setTransparentCircleRadius(61f);
 
         ArrayList sexValues = new ArrayList();
-        sexValues.add(new PieEntry(63.0F, "남성"));
-        sexValues.add(new PieEntry(37.0F, "여성"));
+        sexValues.add(new PieEntry(71.0F, "남성"));
+        sexValues.add(new PieEntry(29.0F, "여성"));
 
         sexRateChart.animateY(2000, Easing.EaseInOutCubic);
 
@@ -80,12 +82,12 @@ public class ResultActivity extends AppCompatActivity {
         ageRateChart.setExtraOffsets(5.0f, 10.0f, 5.0f, 5.0f);
 
         ArrayList ageValues = new ArrayList();
-        ageValues.add(new BarEntry(0.0f, 10.0f, "10대"));
-        ageValues.add(new BarEntry(1.0F, 30.0F, "20대"));
-        ageValues.add(new BarEntry(2.0F, 50.0F, "30대"));
-        ageValues.add(new BarEntry(3.0F, 30.0F, "40대"));
-        ageValues.add(new BarEntry(4.0F, 40.0F, "50대"));
-        ageValues.add(new BarEntry(5.0F, 5.0F, "60대 이상"));
+        ageValues.add(new BarEntry(0.0f, 0.0f, "10대"));
+        ageValues.add(new BarEntry(1.0F, 4.0F, "20대"));
+        ageValues.add(new BarEntry(2.0F, 13.0F, "30대"));
+        ageValues.add(new BarEntry(3.0F, 38.0F, "40대"));
+        ageValues.add(new BarEntry(4.0F, 33.0F, "50대"));
+        ageValues.add(new BarEntry(5.0F, 12.0F, "60대 이상"));
 
 
         XAxis xAxis = ageRateChart.getXAxis();
@@ -99,12 +101,12 @@ public class ResultActivity extends AppCompatActivity {
         ageRateChart.animateY(4000, Easing.EaseInOutCubic);
 
         final int[] ageColors = {
-                Color.parseColor("#f2c71d"),
-                Color.parseColor("#b4b2d3"),
-                Color.parseColor("#b7e7d2"),
-                Color.parseColor("#420420"),
-                Color.parseColor("#800080"),
-                Color.parseColor("#655151"),
+                Color.parseColor("#d4d4d4"),
+                Color.parseColor("#d4d4d4"),
+                Color.parseColor("#d4d4d4"),
+                Color.parseColor("#cf16f2"),
+                Color.parseColor("#d4d4d4"),
+                Color.parseColor("#d4d4d4"),
         };
         ArrayList<Integer> colors = new ArrayList<Integer>();
         for(int c : ageColors)
@@ -286,57 +288,135 @@ public class ResultActivity extends AppCompatActivity {
         emotionChart.setData(emotionData);
         emotionChart.invalidate();
     }
-    public void commentSetter(View view){
-        TextView bestCommId1 = view.findViewById(R.id.bestCommId1);
-        TextView bestCommCon1 = view.findViewById(R.id.bestCommCon1);
-        TextView bestCommLike1 = view.findViewById(R.id.bestCommLike1);
-        TextView bestCommDisLike1 = view.findViewById(R.id.bestCommDisLike1);
+    public void posBestCommentSetter(View view){
+        TextView posBestCommId1 = view.findViewById(R.id.posBestCommId1);
+        TextView posBestCommCon1 = view.findViewById(R.id.posBestCommCon1);
+        TextView posBestCommLike1 = view.findViewById(R.id.posBestCommLike1);
+        TextView posBestCommDisLike1 = view.findViewById(R.id.posBestCommDisLike1);
 
-        TextView bestCommId2 = view.findViewById(R.id.bestCommId2);
-        TextView bestCommCon2 = view.findViewById(R.id.bestCommCon2);
-        TextView bestCommLike2 = view.findViewById(R.id.bestCommLike2);
-        TextView bestCommDisLike2 = view.findViewById(R.id.bestCommDisLike2);
+        TextView posBestCommId2 = view.findViewById(R.id.posBestCommId2);
+        TextView posBestCommCon2 = view.findViewById(R.id.posBestCommCon2);
+        TextView posBestCommLike2 = view.findViewById(R.id.posBestCommLike2);
+        TextView posBestCommDisLike2 = view.findViewById(R.id.posBestCommDisLike2);
 
-        TextView bestCommId3= view.findViewById(R.id.bestCommId3);
-        TextView bestCommCon3 = view.findViewById(R.id.bestCommCon3);
-        TextView bestCommLike3 = view.findViewById(R.id.bestCommLike3);
-        TextView bestCommDisLike3 = view.findViewById(R.id.bestCommDisLike3);
+        TextView posBestCommId3= view.findViewById(R.id.posBestCommId3);
+        TextView posBestCommCon3 = view.findViewById(R.id.posBestCommCon3);
+        TextView posBestCommLike3 = view.findViewById(R.id.posBestCommLike3);
+        TextView posBestCommDisLike3 = view.findViewById(R.id.posBestCommDisLike3);
 
-        TextView bestCommId4 = view.findViewById(R.id.bestCommId4);
-        TextView bestCommCon4 = view.findViewById(R.id.bestCommCon4);
-        TextView bestCommLike4 = view.findViewById(R.id.bestCommLike4);
-        TextView bestCommDisLike4 = view.findViewById(R.id.bestCommDisLike4);
+        TextView posBestCommId4 = view.findViewById(R.id.posBestCommId4);
+        TextView posBestCommCon4 = view.findViewById(R.id.posBestCommCon4);
+        TextView posBestCommLike4 = view.findViewById(R.id.posBestCommLike4);
+        TextView posBestCommDisLike4 = view.findViewById(R.id.posBestCommDisLike4);
 
-        TextView bestCommId5 = view.findViewById(R.id.bestCommId5);
-        TextView bestCommCon5 = view.findViewById(R.id.bestCommCon5);
-        TextView bestCommLike5 = view.findViewById(R.id.bestCommLike5);
-        TextView bestCommDisLike5 = view.findViewById(R.id.bestCommDisLike5);
+        TextView posBestCommId5 = view.findViewById(R.id.posBestCommId5);
+        TextView posBestCommCon5 = view.findViewById(R.id.posBestCommCon5);
+        TextView posBestCommLike5 = view.findViewById(R.id.posBestCommLike5);
+        TextView posBestCommDisLike5 = view.findViewById(R.id.posBestCommDisLike5);
 
-        bestCommId1.setText("예시 ID 1");
-        bestCommCon1.setText("응애으애애애애애애");
-        bestCommLike1.setText("21152");
-        bestCommDisLike1.setText("212");
+        posBestCommId1.setText("hwak****");
+        posBestCommCon1.setText("국민이 퇴출운동 해야됩니다. 민주당이 안한다고. 하니 우리국민이 합시다 국회의원들 특 권도 없애야합니다 이런걸. 바로세웁시다. 찬성");
+        posBestCommLike1.setText("2036");
+        posBestCommDisLike1.setText("50");
 
-        bestCommId2.setText("예시 ID 2");
-        bestCommCon2.setText("응애으애애애애애애");
-        bestCommLike2.setText("21152");
-        bestCommDisLike2.setText("212");
+        posBestCommId2.setText("dudd****");
+        posBestCommCon2.setText("손바닥으로 하늘을가리려 하네요 국민퇴출운동에 동참 합시다국민이 그리우습게 보이나봅니다 ~~");
+        posBestCommLike2.setText("151");
+        posBestCommDisLike2.setText("2");
 
-        bestCommId3.setText("예시 ID 3");
-        bestCommCon3.setText("응애으애애애애애애");
-        bestCommLike3.setText("21152");
-        bestCommDisLike3.setText("212");
+        posBestCommId3.setText("lhn0****");
+        posBestCommCon3.setText("국민이 퇴출운동 해야 한다에 한표!!!!.");
+        posBestCommLike3.setText("74");
+        posBestCommDisLike3.setText("2");
 
-        bestCommId4.setText("예시 ID 4");
-        bestCommCon4.setText("응애으애애애애애애");
-        bestCommLike4.setText("21152");
-        bestCommDisLike4.setText("212");
+        posBestCommId4.setText("yo53****");
+        posBestCommCon4.setText("ㅇ이년은도둑년입니다.국민모두퇴출에동참합시다");
+        posBestCommLike4.setText("27");
+        posBestCommDisLike4.setText("0");
 
-        bestCommId5.setText("예시 ID 5");
-        bestCommCon5.setText("응애으애애애애애애");
-        bestCommLike5.setText("21152");
-        bestCommDisLike5.setText("212");
+        posBestCommId5.setText("simi****");
+        posBestCommCon5.setText("민주당을 좋아하지만 이번엔 처신을 못하는듯통합당이 주도해서 국민들이 일어설때가 돈듯하다");
+        posBestCommLike5.setText("20");
+        posBestCommDisLike5.setText("1");
     }
+    public void negBestCommentSetter(View view){
+        TextView negBestCommId1 = view.findViewById(R.id.negBestCommId1);
+        TextView negBestCommCon1 = view.findViewById(R.id.negBestCommCon1);
+        TextView negBestCommLike1 = view.findViewById(R.id.negBestCommLike1);
+        TextView negBestCommDisLike1 = view.findViewById(R.id.negBestCommDisLike1);
+
+        TextView negBestCommId2 = view.findViewById(R.id.negBestCommId2);
+        TextView negBestCommCon2 = view.findViewById(R.id.negBestCommCon2);
+        TextView negBestCommLike2 = view.findViewById(R.id.negBestCommLike2);
+        TextView negBestCommDisLike2 = view.findViewById(R.id.negBestCommDisLike2);
+
+        TextView negBestCommId3= view.findViewById(R.id.negBestCommId3);
+        TextView negBestCommCon3 = view.findViewById(R.id.negBestCommCon3);
+        TextView negBestCommLike3 = view.findViewById(R.id.negBestCommLike3);
+        TextView negBestCommDisLike3 = view.findViewById(R.id.negBestCommDisLike3);
+
+        TextView negBestCommId4 = view.findViewById(R.id.negBestCommId4);
+        TextView negBestCommCon4 = view.findViewById(R.id.negBestCommCon4);
+        TextView negBestCommLike4 = view.findViewById(R.id.negBestCommLike4);
+        TextView negBestCommDisLike4 = view.findViewById(R.id.negBestCommDisLike4);
+
+        TextView negBestCommId5 = view.findViewById(R.id.negBestCommId5);
+        TextView negBestCommCon5 = view.findViewById(R.id.negBestCommCon5);
+        TextView negBestCommLike5 = view.findViewById(R.id.negBestCommLike5);
+        TextView negBestCommDisLike5 = view.findViewById(R.id.negBestCommDisLike5);
+
+        negBestCommId1.setText("lgh6****");
+        negBestCommCon1.setText("전원주택이 9억이란말에 주택건설에 종사해본 1000만의 노동자 관계자는 알거다....말도안된다는걸.....그래서 저년이 거짓말을 한다는걸...도저히 말도안돼는 가격이지...");
+        negBestCommLike1.setText("709");
+        negBestCommDisLike1.setText("13");
+
+        negBestCommId2.setText("ssel****");
+        negBestCommCon2.setText("문재인이 한것과 똑같이 입에 재갈을 물리고 마스크를 덧 씌워 북조선 정신병원으로 보내야 한다. 국민이 직접 해야합니다. 지금 문정부는 대한민국 정부가 아니라 북조선 지방 자치 단체에 불과하다. 이제는 더이상 두고 볼 수 없습니다. 이들은 토착 빨갱이 김일성이 졸개들입니다. 김정은 눈치만 보고 있고... 시진핑이 눈치만 보고... 해마다 북한과 중국에 들어가는 돈이 수십조 입니다. 이런 미친 짓을 하는데 어떻게 우리나라 경제가 제대로 돌아가겠습니까? 기업들은 문을 닫아야 할 지경입니다. 공산당은 인간들이 아닙니다.");
+        negBestCommLike2.setText("526");
+        negBestCommDisLike2.setText("40");
+
+        negBestCommId3.setText("syti****");
+        negBestCommCon3.setText("6,70년대의 양아치라는 용어가 요즘 시대에 다시 부활했습니다. 민주당 개팔육 애들이 권력화하면서 자연스럽게 매스컴에서 다시 부활했습니다. 요즘 보면 그냥 양아치가 아니라 \"쌩 양아치\"들이 늘어나고있습니다. 그 집단의 좌장은 밀려서는 안된다 그래서 버티자인데, 사실 그 애들의 집단행동은 진보를 내세운 수구꼴통 무늬만 좌파인 야바위 정치 세력일 뿐입니다. 대께문 여러분 무지는 죄가 아니지만 상대에게는 큰 죄를 짖는 것입니다. 빨리 벋어나세요.");
+        negBestCommLike3.setText("290");
+        negBestCommDisLike3.setText("5");
+
+        negBestCommId4.setText("mona****");
+        negBestCommCon4.setText("야당에서 그랬으면 촛불들고 지랄했을텐데 우덜편이라 지켜보자네");
+        negBestCommLike4.setText("94");
+        negBestCommDisLike4.setText("1");
+
+        negBestCommId5.setText("syti****");
+        negBestCommCon5.setText("사기쳐서 먹고 사는 게 익숙해지면 자신이 사기 친다는 도덕관념이 무너지게 됩니다, 결국엔 상대가 사기에 넘어가지 않으면 상대가 나쁜 놈으로 보이기 시작합니다. 20여년전 자신이 투사라는 정신적 자위가 종국엔 이런 현상을 만들게 됩니다. 도덕적 해이가 이런 것이지요, 그게 집단화된것이 현재의 민주당입니다. 민주당의 가장 나쁜점은 지적능력이 없는 젊은 청년들을 집단화시킵니다. 그게 대께문이라는 기형적 지지집단을 만들게됩니다. 민주당은 시대의 기형화 정권이며, 빨리 소각해야 할 정권입니다.");
+        negBestCommLike5.setText("84");
+        negBestCommDisLike5.setText("3");
+    }
+    public void simArticleSetter(View view){
+        ImageView simArticleImg1 = view.findViewById(R.id.simArticleImg1);
+        TextView simArticleTitle1 = view.findViewById(R.id.simArticleTitle1);
+        TextView simArticleCon1 = view.findViewById(R.id.simArticleCon1);
+
+        ImageView simArticleImg2 = view.findViewById(R.id.simArticleImg2);
+        TextView simArticleTitle2 = view.findViewById(R.id.simArticleTitle2);
+        TextView simArticleCon2 = view.findViewById(R.id.simArticleCon2);
+
+        ImageView simArticleImg3 = view.findViewById(R.id.simArticleImg3);
+        TextView simArticleTitle3 = view.findViewById(R.id.simArticleTitle3);
+        TextView simArticleCon3 = view.findViewById(R.id.simArticleCon3);
+
+        simArticleImg1.setImageResource(R.drawable.simarticleimg1);
+        simArticleTitle1.setText("자료받는 윤미향 의원");
+        simArticleCon1.setText("더불어민주당 소속 윤미향 의원이 23일 오전 세종시 정부세종청사에서 열린 국회 환경노동위원회의 환경부, 기상청에 대한 종합감사에 참석, 보좌진에게 자료를 받고 있다.");
+
+        simArticleImg2.setImageResource(R.drawable.simarticleimg2);
+        simArticleTitle2.setText("지리산 반달곰 관련 질의하는 윤미향 위원");
+        simArticleCon2.setText("더불어민주당 소속 윤미향 위원이 23일 오전 세종시 정부세종청사에서 열린 국회 환경노동위원회의 환경부, 기상청에 대한 국정감사에서 지리산 반달곰과 관련해 질의하며 곰 인형을 들어보이고 있다. ");
+
+        simArticleImg3.setImageResource(R.drawable.simarticleimg3);
+        simArticleTitle3.setText("자료받는 윤미향 의원");
+        simArticleCon3.setText("조명래 환경부 장관이 23일 정부세종청사에서 열린 국회 환경노동위원회의 환경부, 기상청에 대한 국정감사에서 윤미향 더불어민주당 의원과 인사를 나누고 있다.");
+
+    }
+
 
     private ViewPager mViewPager;
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());

@@ -27,8 +27,9 @@ public class FragmentEmotion extends Fragment {
         ResultActivity resultActivity = new ResultActivity();
 
         resultActivity.emotionChart(view);
-//        resultActivityy.posKeywordChart(view);
-//        resultActivityy.negKeywordChart(view);
+        resultActivity.posBestCommentSetter(view);
+        resultActivity.negBestCommentSetter(view);
+
         return view;
     }
 }
