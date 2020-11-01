@@ -30,6 +30,7 @@ dependencies {
     implementation "androidx.core:core-ktx:+"
     implementation 'org.jsoup:jsoup:1.13.1'
     testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:design:28.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

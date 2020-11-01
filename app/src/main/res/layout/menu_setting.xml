@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:id="@+id/drawerView"
+    android:background="#3fbf33">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="#3fbf33">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모아모아 1.0V"
+            android:textSize="26dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="45dp"
+            >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2020 한이음 공모전 영상 시연용"
+            android:textSize="14dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="130dp"
+            android:layout_centerHorizontal="true">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#80ffffff"
+            android:layout_marginTop="270dp">
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_announcement_black_24dp"
+            android:layout_marginTop="298dp"
+            android:layout_marginLeft="20dp">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="앱 정보"
+            android:textColor="#ffffff"
+            android:id="@+id/nav_ex"
+            android:layout_marginTop="298dp"
+            android:layout_marginLeft="44dp"
+            android:onClick="OnClick">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#80ffffff"
+            android:layout_marginTop="340dp">
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_settings_black_24dp"
+            android:layout_marginTop="368dp"
+            android:layout_marginLeft="20dp">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="설정"
+            android:textColor="#ffffff"
+            android:id="@+id/nav_info"
+            android:layout_marginTop="368dp"
+            android:layout_marginLeft="44dp"
+            android:onClick="OnClick">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#80ffffff"
+            android:layout_marginTop="410dp">
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_live_help_black_24dp"
+            android:layout_marginTop="438dp"
+            android:layout_marginLeft="20dp">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문의하기"
+            android:textColor="#ffffff"
+            android:id="@+id/nav_help"
+            android:layout_marginTop="438dp"
+            android:layout_marginLeft="44dp"
+            android:onClick="OnClick">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#80ffffff"
+            android:layout_marginTop="480dp">
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

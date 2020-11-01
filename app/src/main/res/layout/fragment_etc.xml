@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:id="@+id/Etc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/etcLayout">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="비슷한 기사"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/simArticleImg1"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/img_noimg"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/simArticleTitle1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="기사 제목"
+                            android:textSize="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:id="@+id/simArticleCon1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:text="기사 내용"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/simArticleImg2"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/img_noimg"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/simArticleTitle2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="기사 제목"
+                            android:textSize="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:id="@+id/simArticleCon2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:text="기사 내용"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/simArticleImg3"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/img_noimg"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/simArticleTitle3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="기사 제목"
+                            android:textSize="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:id="@+id/simArticleCon3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:text="기사 내용"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

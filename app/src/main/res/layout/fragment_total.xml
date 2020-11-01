@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/totalLayout">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="남녀 성비"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp">
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/sexRateChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </com.github.mikephil.charting.charts.PieChart>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="댓글을 단 연령대"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp">
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/ageRateChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </com.github.mikephil.charting.charts.BarChart>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="댓글 등록 시간대"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp">
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/timeLineChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </com.github.mikephil.charting.charts.LineChart>
+                </RelativeLayout>
+            </LinearLayout>
+
+<!--            <TextView-->
+<!--                android:id="@+id/recArticle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="여기에 데이터넘어와"-->
+<!--                android:textSize="25dp"/>-->
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
