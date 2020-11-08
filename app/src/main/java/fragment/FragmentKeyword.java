@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ResultActivity;
+//import com.example.myapplication.ResultActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,10 +24,10 @@ public class FragmentKeyword extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_keyword, container, false);
-        ResultActivity resultActivity = new ResultActivity();
+        //ResultActivity resultActivity = new ResultActivity();
 
-        resultActivity.posKeywordChart(view);
-        resultActivity.negKeywordChart(view);
+        //resultActivity.posKeywordChart(view);
+        //resultActivity.negKeywordChart(view);
 
 
         return view;

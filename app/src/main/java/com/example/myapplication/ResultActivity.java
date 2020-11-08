@@ -1,3 +1,4 @@
+/*
 package com.example.myapplication;
 
 import android.graphics.Color;
@@ -442,3 +443,4 @@ public class ResultActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 }
+*/

@@ -163,7 +163,7 @@ import android.widget.TextView;
 
 public final class MainActivity extends AppCompatActivity {
 
-    private String baseUrl = "http://15.165.159.104/";
+    private String baseUrl = "http://54.180.81.226/";
     private EditText get_Url;
 
     ArrayList<HashMap<String, String>> tnews = new ArrayList<HashMap<String, String>>();
@@ -186,7 +186,7 @@ public final class MainActivity extends AppCompatActivity {
 
         btn_search.setOnClickListener((new OnClickListener() {
             public final void onClick(View it) {
-                Intent intent = new Intent(MainActivity.this.getApplicationContext(), ResultActivity.class);
+                //  Intent intent = new Intent(MainActivity.this.getApplicationContext(), ResultActivity.class);
 
 
                 if(get_Url.getText() != null)
@@ -194,6 +194,10 @@ public final class MainActivity extends AppCompatActivity {
                     //정상적인 링크
                     //1.Crawling
                     Log.e("DATA", "Correct");
+
+
+                    //POSTAsyncTask POSTAsyncTask = new POSTAsyncTask();
+                    //sPOSTAsyncTask.execute(baseUrl);
 
                     GETAsyncTask GETAsyncTask = new GETAsyncTask();
                     GETAsyncTask.execute(baseUrl);
@@ -207,7 +211,7 @@ public final class MainActivity extends AppCompatActivity {
                     }
                     //3.분석 DB조회 및 데이터 가져오기 결과페이지 출력
 
-                    startActivity(intent);
+                    //startActivity(intent);
                 }
                 else{
                     //비정상적인 링크력
@@ -225,10 +229,11 @@ public final class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             String url = strings[0];
-            String parameter = "crawling1.php";
+            String parameter = "test.php";
             url = url + parameter;
             try{
                 String selectLink = "post&link=" + get_Url.getText().toString()+ "";
+                //String selectLink = "post&word=" + "사기" + "&score=-3";
                 Log.e("selectLink",selectLink);
                 Log.e("url",url);
                 //String selectLink = "link=https://news.naver.com/main/read.nhn?mode=LSD%26mid=shm%26sid1=102%26oid=032%26aid=0003039099";
@@ -254,11 +259,15 @@ public final class MainActivity extends AppCompatActivity {
                 outputStream.flush();
                 outputStream.close();
 
+
                 InputStream is = null;
                 BufferedReader in = null;
                 String data = "";
 
+
+
                 int response = httpURLConnection.getResponseCode();
+
 
                 is = httpURLConnection.getInputStream();
                 in = new BufferedReader(new InputStreamReader(is), 8 * 1024);
@@ -290,9 +299,10 @@ public final class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            return null;
+            return "";
         }
     }
+
 
     public class GETAsyncTask extends AsyncTask<String, Void, String>{
         ProgressDialog progressDialog;
@@ -308,7 +318,7 @@ public final class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             String url = strings[0];
             //ip : 15.165.159.104
-            String parameter = "connection.php";
+            String parameter = "getJson.php";
             url = url + parameter;
             try{
                 //url을 get으로 넘기면 nid 찾는 과정 필요...
@@ -379,6 +389,85 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    public class IMGAsyncTask extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String url = strings[0];
+            //ip : 15.165.159.104
+            String parameter = "nid.php";
+            url = url + parameter;
+            try{
+                //url을 get으로 넘기면 nid 찾는 과정 필요...
+                String selectLink = "post&link=" + get_Url.getText().toString()+ "";
+                Log.e("selectLink",selectLink);
+                Log.e("url",url);
+                //String selectLink = "link=https://news.naver.com/main/read.nhn?mode=LSD%26mid=shm%26sid1=102%26oid=032%26aid=0003039099";
+                //String selectLink = "word=AAA&score=3";
+                URL serverURL = new URL(url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)serverURL.openConnection();
+                if(httpURLConnection == null) {
+                    Log.e("LOG.TAG" ,"ByPostMethod, Connection is null");
+                }
+                else
+                {
+                    Log.e("LOG.TAG" ,"ByPostMethod, Connection is Succesful");
+                }
+
+                httpURLConnection.setReadTimeout(25000);
+                httpURLConnection.setConnectTimeout(25000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(selectLink.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                InputStream is = null;
+                BufferedReader in = null;
+                String data = "";
+
+                int response = httpURLConnection.getResponseCode();
+
+                is = httpURLConnection.getInputStream();
+                in = new BufferedReader(new InputStreamReader(is), 8 * 1024);
+                String line = null;
+                StringBuffer buff = new StringBuffer();
+                while ( ( line = in.readLine() ) != null )
+                {
+                    buff.append(line);
+                }
+                data = buff.toString().trim();
+
+
+                if (response == HttpURLConnection.HTTP_OK) {
+                    Log.e("RECV DATA",data);
+                }
+                else{
+                    Log.e("NOT RECV DATA",data);
+                }
+
+                in.close();
+
+
+                mJsonString = data;
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+    */
+
+
     private void JsonParsing(){
         try {
             //tnews, relevantArticle , timeAnalysis, keywordRank
@@ -394,7 +483,7 @@ public final class MainActivity extends AppCompatActivity {
                 //Log.e("RESULT","FF");
                 JSONObject item = tnewsJarray.getJSONObject(i);
                 //Log.e("RESULT","FF");
-                String nid = item.getString("nid");
+                //String nid = item.getString("nid");
                 String emotion_like = item.getString("emotion_like");
                 String emotion_nice = item.getString("emotion_nice");
                 String emotion_sad = item.getString("emotion_sad");
@@ -408,7 +497,7 @@ public final class MainActivity extends AppCompatActivity {
                 String fourty = item.getString("fourty");
                 String fifty = item.getString("fifty");
                 String overSixty = item.getString("overSixty");
-                Log.e("JSON2 : ", nid +", "+ emotion_like+ ", " + emotion_nice +", "+emotion_sad+", "+
+                Log.e("JSON2 : ", emotion_like+ ", " + emotion_nice +", "+emotion_sad+", "+
                         emotion_angry +", "+ emotion_wantAfter+", "+male +", "+female +", "+teen +", "+
                         twenty +", "+ male +", "+thirty +", "+ fourty +", "+ fifty+", "+ overSixty);
 
@@ -416,7 +505,7 @@ public final class MainActivity extends AppCompatActivity {
                 HashMap<String,String> hashMap = new HashMap<>();
                 //Log.e("HASH","FINISH");
 
-                hashMap.put("nid", nid);
+                //hashMap.put("nid", nid);
                 hashMap.put("emotion_like", emotion_like);
                 hashMap.put("emotion_nice", emotion_nice);
                 hashMap.put("emotion_sad", emotion_sad);
@@ -435,8 +524,9 @@ public final class MainActivity extends AppCompatActivity {
 
 
                 tnews.add(hashMap);
-                Log.e("ARRAYLIST","tnews FINISH");
+
             }
+            Log.e("ARRAYLIST","tnews FINISH");
 
             for(int i = 0; i<relevanteArticleJarray.length();i++)
             {
@@ -444,11 +534,11 @@ public final class MainActivity extends AppCompatActivity {
                 String no = item.getString("no");
                 //String nid = item.getString("nid");
                 String url = item.getString("url");
-                String articleName = item.getString("articleName");
-                String articleContent = item.getString("articleContent");
-                String articleImg = item.getString("articleImg");
+                String articleName = item.getString("Name");
+                String articleContent = item.getString("contents");
+                //String articleImg = item.getString("articleImg");
                 Log.e("JSON : ",  no + ", "+ url+ ", " + articleName +
-                        articleContent + ", " + articleImg);
+                        articleContent);
 
                 HashMap<String,String> hashMap = new HashMap<>();
                 //Log.e("HASH","FINISH");
@@ -457,13 +547,13 @@ public final class MainActivity extends AppCompatActivity {
                 hashMap.put("url", url);
                 hashMap.put("articleName", articleName);
                 hashMap.put("articleContent", articleContent);
-                hashMap.put("articleImg", articleImg);
+                //hashMap.put("articleImg", articleImg);
                 //Log.e("PUT","FINISH");
 
                 relevantArticle.add(hashMap);
-                Log.e("ARRAYLIST","relevantArticle FINISH");
-            }
 
+            }
+            Log.e("ARRAYLIST","relevantArticle FINISH");
             for(int i = 0; i<timeAnalysisJarray.length();i++)
             {
                 JSONObject item = timeAnalysisJarray.getJSONObject(i);
@@ -484,14 +574,15 @@ public final class MainActivity extends AppCompatActivity {
                 //Log.e("PUT","FINISH");
 
                 timeAnalysis.add(hashMap);
-                Log.e("ARRAYLIST","timeAnalysis FINISH");
-            }
 
+            }
+            Log.e("ARRAYLIST","timeAnalysis FINISH");
             for(int i = 0; i<keywordRankJarray.length();i++)
             {
                 JSONObject item = keywordRankJarray.getJSONObject(i);
                 String no = item.getString("no");
                 //String nid = item.getString("nid");
+                String emotionBool = item.getString("emotionBool");
                 String rank = item.getString("rank");
                 String keyword = item.getString("keyword");
                 String count = item.getString("count");
@@ -509,9 +600,9 @@ public final class MainActivity extends AppCompatActivity {
                 //Log.e("PUT","FINISH");
 
                 keywordRank.add(hashMap);
-                Log.e("ARRAYLIST","keywordRank FINISH");
-            }
 
+            }
+            Log.e("ARRAYLIST","keywordRank FINISH");
             /*
             ListAdapter adapter = new SimpleAdapter(
                     MainActivity.this, mArrayList,
@@ -527,5 +618,6 @@ public final class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
 }
