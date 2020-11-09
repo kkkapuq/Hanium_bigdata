@@ -129,6 +129,8 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -197,11 +199,13 @@ public final class MainActivity extends AppCompatActivity {
 
 
                     //POSTAsyncTask POSTAsyncTask = new POSTAsyncTask();
-                    //sPOSTAsyncTask.execute(baseUrl);
+                    //POSTAsyncTask.execute(baseUrl);
 
-                    GETAsyncTask GETAsyncTask = new GETAsyncTask();
-                    GETAsyncTask.execute(baseUrl);
+                    //GETAsyncTask GETAsyncTask = new GETAsyncTask();
+                    //GETAsyncTask.execute(baseUrl);
 
+                    IMGAsyncTask IMGAsyncTask = new IMGAsyncTask();
+                    IMGAsyncTask.execute(baseUrl);
 
                     //2.데이터 분석 AsyncTask(TimeSleep)
                     try{
@@ -229,7 +233,7 @@ public final class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             String url = strings[0];
-            String parameter = "test.php";
+            String parameter = "crawling1.php";
             url = url + parameter;
             try{
                 String selectLink = "post&link=" + get_Url.getText().toString()+ "";
@@ -389,22 +393,34 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*
+
     public class IMGAsyncTask extends AsyncTask<String, Void, String>{
 
         @Override
         protected String doInBackground(String... strings) {
             String url = strings[0];
-            //ip : 15.165.159.104
-            String parameter = "nid.php";
-            url = url + parameter;
+            Bitmap bitmap;
+            String getUrl = get_Url.getText().toString();
+            String[] DATA = getUrl.split("&");
+            String imgName = "";
+            for(int i = 1; i<DATA.length; i++)
+            {
+                Log.e("TEST", DATA[i]);
+                String[] tmp = DATA[i].split("=");
+
+                if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
+                {
+                    Log.e("TMP0",tmp[0]);
+                    Log.e("TMP1",tmp[1]);
+                    imgName += tmp[1];
+                }
+            }
+            imgName = imgName + ".png";
+            String parameter = "img/";
+            url = url + parameter + imgName;
+
             try{
-                //url을 get으로 넘기면 nid 찾는 과정 필요...
-                String selectLink = "post&link=" + get_Url.getText().toString()+ "";
-                Log.e("selectLink",selectLink);
                 Log.e("url",url);
-                //String selectLink = "link=https://news.naver.com/main/read.nhn?mode=LSD%26mid=shm%26sid1=102%26oid=032%26aid=0003039099";
-                //String selectLink = "word=AAA&score=3";
                 URL serverURL = new URL(url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)serverURL.openConnection();
                 if(httpURLConnection == null) {
@@ -415,45 +431,13 @@ public final class MainActivity extends AppCompatActivity {
                     Log.e("LOG.TAG" ,"ByPostMethod, Connection is Succesful");
                 }
 
-                httpURLConnection.setReadTimeout(25000);
-                httpURLConnection.setConnectTimeout(25000);
-                httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.connect();
 
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(selectLink.getBytes("UTF-8"));
-                outputStream.flush();
-                outputStream.close();
-
-                InputStream is = null;
-                BufferedReader in = null;
-                String data = "";
-
-                int response = httpURLConnection.getResponseCode();
-
-                is = httpURLConnection.getInputStream();
-                in = new BufferedReader(new InputStreamReader(is), 8 * 1024);
-                String line = null;
-                StringBuffer buff = new StringBuffer();
-                while ( ( line = in.readLine() ) != null )
-                {
-                    buff.append(line);
-                }
-                data = buff.toString().trim();
+                InputStream is = httpURLConnection.getInputStream();
+                bitmap = BitmapFactory.decodeStream(is);
 
 
-                if (response == HttpURLConnection.HTTP_OK) {
-                    Log.e("RECV DATA",data);
-                }
-                else{
-                    Log.e("NOT RECV DATA",data);
-                }
-
-                in.close();
-
-
-                mJsonString = data;
 
 
             } catch (MalformedURLException e) {
@@ -465,7 +449,7 @@ public final class MainActivity extends AppCompatActivity {
             return null;
         }
     }
-    */
+
 
 
     private void JsonParsing(){
