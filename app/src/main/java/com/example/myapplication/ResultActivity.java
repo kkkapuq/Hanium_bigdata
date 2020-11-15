@@ -1,8 +1,10 @@
-/*
+
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,10 +31,12 @@ import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import fragment.FragmentEmotion;
 import fragment.FragmentEtc;
@@ -42,6 +46,8 @@ import fragment.FragmentTotal;
 public class ResultActivity extends AppCompatActivity {
 
     public void sexRateChart(View view){
+        ArrayList<HashMap<String, String>> tnews = (ArrayList<HashMap<String, String>>) getIntent().getSerializableExtra("tnews");
+
         PieChart sexRateChart;
         sexRateChart = view.findViewById(R.id.sexRateChart);
         sexRateChart.setUsePercentValues(true);
@@ -257,11 +263,11 @@ public class ResultActivity extends AppCompatActivity {
         emotionChart.setTransparentCircleRadius(61f);
 
         ArrayList emotionValues = new ArrayList();
-        emotionValues.add(new PieEntry(150.0F, "좋아요"));
-        emotionValues.add(new PieEntry(90.0F, "최고예요"));
-        emotionValues.add(new PieEntry(58.0F, "슬퍼요"));
-        emotionValues.add(new PieEntry(15.0F, "화나요"));
-        emotionValues.add(new PieEntry(30.0F, "후속기사 원해요"));
+        emotionValues.add(new PieEntry(9.0F, "좋아요"));
+        emotionValues.add(new PieEntry(0.0F, "최고예요"));
+        emotionValues.add(new PieEntry(2.0F, "슬퍼요"));
+        emotionValues.add(new PieEntry(1382.0F, "화나요"));
+        emotionValues.add(new PieEntry(15.0F, "후속기사 원해요"));
 
         emotionChart.animateY(2000, Easing.EaseInOutCubic);
 
@@ -269,9 +275,8 @@ public class ResultActivity extends AppCompatActivity {
                 Color.parseColor("#08f453"),
                 Color.parseColor("#08b3f4"),
                 Color.parseColor("#c64cfd"),
-                Color.parseColor("#420420"),
                 Color.parseColor("#ff4040"),
-                Color.parseColor("#f4ff40"),
+                Color.parseColor("#420420")
         };
         ArrayList<Integer> colors = new ArrayList<Integer>();
         for(int c : ageColors)
@@ -418,29 +423,79 @@ public class ResultActivity extends AppCompatActivity {
 
     }
 
-
     private ViewPager mViewPager;
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+    ArrayList<HashMap<String, String>> tnewsArrayList;
+    ArrayList<HashMap<String, String>> timeAnalysisArrayList;
+    ArrayList<HashMap<String, String>> relevantArticleArrayList;
+    ArrayList<HashMap<String, String>> keywordRankArrayList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        HashMap<String,String> hashMap = new HashMap<>();
+
+        Intent intent = getIntent();
+        tnewsArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("tnews");
+        timeAnalysisArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("timeAnalysis");
+        relevantArticleArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("relevantArticle");
+        keywordRankArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("keywordRank");
+
+        //워드클라우드 이미지 따로 받아오기
+        String wordcloud = getIntent().getStringExtra("wordcloud");
+        hashMap.put("wordcloud", wordcloud);
+        keywordRankArrayList.add(hashMap);
+
+//        Fragment fragmentTotal = new FragmentTotal();
+//        Fragment fragmentKeyword = new FragmentTotal();
+//        Fragment fragmentEmotion = new FragmentTotal();
+//        Fragment fragmentEtc = new FragmentTotal();
+//
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("tnewsArrayList", tnewsArrayList);
+//        bundle.putSerializable("timeAnalysisArrayList", timeAnalysisArrayList);
+//        bundle.putSerializable("relevantArticleArrayList", relevantArticleArrayList);
+//        bundle.putSerializable("keywordRankArrayList", keywordRankArrayList);
+//
+//        fragmentTotal.setArguments(bundle);
+//        fragmentKeyword.setArguments(bundle);
+//        fragmentEmotion.setArguments(bundle);
+//        fragmentEtc.setArguments(bundle);
+
         mViewPager = findViewById(R.id.layout_viewPager);
         setupViewPager(mViewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.layout_tab);
+        TabLayout tabLayout = findViewById(R.id.layout_tab);
         tabLayout.setupWithViewPager(mViewPager);
+
     }
 
     public void setupViewPager(ViewPager viewPager) {
-        adapter.addFragment(new FragmentTotal(), "종합");
-        adapter.addFragment(new FragmentKeyword(), "키워드 분석");
-        adapter.addFragment(new FragmentEmotion(), "감정 분석");
-        adapter.addFragment(new FragmentEtc(), "기타 정보");
+
+        Fragment fragmentTotal = new FragmentTotal();
+        Fragment fragmentKeyword = new FragmentKeyword();
+        Fragment fragmentEmotion = new FragmentEmotion();
+        Fragment fragmentEtc = new FragmentEtc();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("tnewsArrayList", tnewsArrayList);
+        bundle.putSerializable("timeAnalysisArrayList", timeAnalysisArrayList);
+        bundle.putSerializable("relevantArticleArrayList", relevantArticleArrayList);
+        bundle.putSerializable("keywordRankArrayList", keywordRankArrayList);
+
+        fragmentTotal.setArguments(bundle);
+        fragmentKeyword.setArguments(bundle);
+        fragmentEmotion.setArguments(bundle);
+        fragmentEtc.setArguments(bundle);
+
+        adapter.addFragment(fragmentTotal, "종합");
+        adapter.addFragment(fragmentKeyword, "키워드 분석");
+        adapter.addFragment(fragmentEmotion, "감정 분석");
+        adapter.addFragment(fragmentEtc, "기타 정보");
 
         viewPager.setAdapter(adapter);
     }
 }
-*/
