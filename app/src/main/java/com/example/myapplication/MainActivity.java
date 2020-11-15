@@ -411,16 +411,17 @@ public final class MainActivity extends AppCompatActivity {
             String getUrl = get_Url.getText().toString();
             String[] DATA = getUrl.split("&");
             String imgName = "";
-//            for(int i = 1; i<DATA.length; i++)
-//            {
-//                String[] tmp = DATA[i].split("=");
-//
-//                if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
-//                {
-//                    imgName += tmp[1];
-//                }
-//            }
-            imgName = "0010230003574803" + ".png";
+            for(int i = 1; i<DATA.length; i++)
+            {
+                String[] tmp = DATA[i].split("=");
+
+                if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
+                {
+                    imgName += tmp[1];
+                }
+            }
+//            imgName = "0010230003574803" + ".png";
+            imgName = "1"+imgName+".png";
             String parameter = "img/";
             url = url + parameter + imgName;
 
@@ -530,7 +531,7 @@ public final class MainActivity extends AppCompatActivity {
                 String articleName = item.getString("Name");
                 String articleContent = item.getString("contents");
                 //String articleImg = item.getString("articleImg");
-                Log.e("JSON : ",  no + ", "+ url+ ", " + articleName +
+                Log.e("JSON : ",  no + ", "+ url+ ", " + articleName + ", " +
                         articleContent);
 
                 HashMap<String,String> hashMap = new HashMap<>();
@@ -619,6 +620,7 @@ public final class MainActivity extends AppCompatActivity {
                 //Log.e("HASH","FINISH");
 
                 hashMap.put("no",no);
+                hashMap.put("emotionBool", emotionBool);
                 hashMap.put("rank", rank);
                 hashMap.put("keyword", keyword);
                 hashMap.put("count", count);
@@ -637,8 +639,12 @@ public final class MainActivity extends AppCompatActivity {
                 String no = item.getString("no");
                 String emotionBool = item.getString("emotionBool");
                 String comments = item.getString("comments");
+                String sympathyCount = item.getString("sympathyCount");
+                String antipathyCount = item.getString("antipathyCount");
+                String replyAllCount = item.getString("replyAllCount");
+                String usrName = item.getString("usrName");
 
-                Log.e("JSON : ",  no + ", "+  emotionBool + ", " + comments);
+                Log.e("JSON : ",  no + ", "+  emotionBool + ", " + comments +", "+sympathyCount + ", " + antipathyCount + ", "+replyAllCount +", " + usrName);
 
                 HashMap<String,String> hashMap = new HashMap<>();
                 //Log.e("HASH","FINISH");
@@ -646,6 +652,11 @@ public final class MainActivity extends AppCompatActivity {
                 hashMap.put("no",no);
                 hashMap.put("emotionBool", emotionBool);
                 hashMap.put("comments", comments);
+                hashMap.put("sympathyCount", sympathyCount);
+                hashMap.put("antipathyCount", antipathyCount);
+                hashMap.put("replyAllCount", replyAllCount);
+                hashMap.put("usrName", usrName);
+
 
                 //Log.e("PUT","FINISH");
 
