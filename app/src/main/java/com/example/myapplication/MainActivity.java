@@ -172,6 +172,8 @@ public final class MainActivity extends AppCompatActivity {
     ArrayList<HashMap<String, String>> relevantArticle = new ArrayList<HashMap<String, String>>();
     ArrayList<HashMap<String, String>> timeAnalysis = new ArrayList<HashMap<String, String>>();
     ArrayList<HashMap<String, String>> keywordRank = new ArrayList<HashMap<String, String>>();
+    ArrayList<HashMap<String, String>> emotionAnalysis = new ArrayList<HashMap<String, String>>();
+    ArrayList<HashMap<String, String>> emotionComments = new ArrayList<HashMap<String, String>>();
 
 
     String mJsonString;
@@ -198,14 +200,14 @@ public final class MainActivity extends AppCompatActivity {
                     Log.e("DATA", "Correct");
 
 
-                    //POSTAsyncTask POSTAsyncTask = new POSTAsyncTask();
-                    //POSTAsyncTask.execute(baseUrl);
+                    POSTAsyncTask POSTAsyncTask = new POSTAsyncTask();
+                    POSTAsyncTask.execute(baseUrl);
 
-                    //GETAsyncTask GETAsyncTask = new GETAsyncTask();
-                    //GETAsyncTask.execute(baseUrl);
+                    GETAsyncTask GETAsyncTask = new GETAsyncTask();
+                    GETAsyncTask.execute(baseUrl);
 
-                    IMGAsyncTask IMGAsyncTask = new IMGAsyncTask();
-                    IMGAsyncTask.execute(baseUrl);
+                    //IMGAsyncTask IMGAsyncTask = new IMGAsyncTask();
+                    //IMGAsyncTask.execute(baseUrl);
 
                     //2.데이터 분석 AsyncTask(TimeSleep)
                     try{
@@ -234,10 +236,22 @@ public final class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             String url = strings[0];
             String parameter = "crawling1.php";
-            url = url + parameter;
+            url = url + parameter;      //ip. . . . /crawling1.php/?link="12345"&imgName="abc"
+            String getUrl = get_Url.getText().toString();
+            String[] DATA = getUrl.split("&");
+            String imgName = "";
+            for(int i = 1; i<DATA.length; i++)
+            {
+                String[] tmp = DATA[i].split("=");
+
+                if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
+                {
+                    imgName += tmp[1];
+                }
+            }
+
             try{
-                String selectLink = "post&link=" + get_Url.getText().toString()+ "";
-                //String selectLink = "post&word=" + "사기" + "&score=-3";
+                String selectLink = "post&link=" + get_Url.getText().toString()+ "&imgName=" + imgName;
                 Log.e("selectLink",selectLink);
                 Log.e("url",url);
                 //String selectLink = "link=https://news.naver.com/main/read.nhn?mode=LSD%26mid=shm%26sid1=102%26oid=032%26aid=0003039099";
@@ -252,8 +266,8 @@ public final class MainActivity extends AppCompatActivity {
                     Log.e("LOG.TAG" ,"ByPostMethod, Connection is Succesful");
                 }
 
-                httpURLConnection.setReadTimeout(25000);
-                httpURLConnection.setConnectTimeout(25000);
+                httpURLConnection.setReadTimeout(300000);
+                httpURLConnection.setConnectTimeout(300000);
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.connect();
@@ -322,15 +336,16 @@ public final class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             String url = strings[0];
             //ip : 15.165.159.104
-            String parameter = "getJson.php";
+            String parameter = "getJson1.php";
             url = url + parameter;
             try{
                 //url을 get으로 넘기면 nid 찾는 과정 필요...
-                String selectLink = "get&link=" + get_Url.getText().toString()+ "";
+                String selectLink = "?link=" + get_Url.getText().toString()+ "";
                 Log.e("selectLink",selectLink);
                 Log.e("url",url);
                 //String selectLink = "link=https://news.naver.com/main/read.nhn?mode=LSD%26mid=shm%26sid1=102%26oid=032%26aid=0003039099";
                 //String selectLink = "word=AAA&score=3";
+                url = url + selectLink;
                 URL serverURL = new URL(url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)serverURL.openConnection();
                 if(httpURLConnection == null) {
@@ -340,17 +355,13 @@ public final class MainActivity extends AppCompatActivity {
                 {
                     Log.e("LOG.TAG" ,"ByPostMethod, Connection is Succesful");
                 }
-
+                //httpURLConnection.setRequestMethod("GET");
                 httpURLConnection.setReadTimeout(25000);
                 httpURLConnection.setConnectTimeout(25000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.connect();
+                httpURLConnection.setUseCaches(false);
 
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(selectLink.getBytes("UTF-8"));
-                outputStream.flush();
-                outputStream.close();
+
+
 
                 InputStream is = null;
                 BufferedReader in = null;
@@ -358,6 +369,9 @@ public final class MainActivity extends AppCompatActivity {
 
                 int response = httpURLConnection.getResponseCode();
 
+
+
+                출처: https://bobr2.tistory.com/entry/HttpConnection-Get-Post-사용법 [나만의공간]
                 is = httpURLConnection.getInputStream();
                 in = new BufferedReader(new InputStreamReader(is), 8 * 1024);
                 String line = null;
@@ -405,13 +419,10 @@ public final class MainActivity extends AppCompatActivity {
             String imgName = "";
             for(int i = 1; i<DATA.length; i++)
             {
-                Log.e("TEST", DATA[i]);
                 String[] tmp = DATA[i].split("=");
 
                 if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
                 {
-                    Log.e("TMP0",tmp[0]);
-                    Log.e("TMP1",tmp[1]);
                     imgName += tmp[1];
                 }
             }
@@ -460,8 +471,14 @@ public final class MainActivity extends AppCompatActivity {
             JSONArray relevanteArticleJarray = jsonObject.getJSONArray("relevantArticle");
             JSONArray timeAnalysisJarray = jsonObject.getJSONArray("timeAnalysis");
             JSONArray keywordRankJarray = jsonObject.getJSONArray("keywordRank");
+            JSONArray emotionAnalysisJarray = jsonObject.getJSONArray("news");
+            JSONArray emotionCommentsJarray = jsonObject.getJSONArray("emotionComments");
 
             Log.e("Function","JsonParsing");
+
+
+
+
 
             for(int i=0;i<tnewsJarray.length();i++){
                 //Log.e("RESULT","FF");
@@ -512,6 +529,7 @@ public final class MainActivity extends AppCompatActivity {
             }
             Log.e("ARRAYLIST","tnews FINISH");
 
+            //관련기사 분석
             for(int i = 0; i<relevanteArticleJarray.length();i++)
             {
                 JSONObject item = relevanteArticleJarray.getJSONObject(i);
@@ -538,6 +556,8 @@ public final class MainActivity extends AppCompatActivity {
 
             }
             Log.e("ARRAYLIST","relevantArticle FINISH");
+
+            //time analysis
             for(int i = 0; i<timeAnalysisJarray.length();i++)
             {
                 JSONObject item = timeAnalysisJarray.getJSONObject(i);
@@ -561,6 +581,35 @@ public final class MainActivity extends AppCompatActivity {
 
             }
             Log.e("ARRAYLIST","timeAnalysis FINISH");
+
+
+            //감정 분석
+            for(int i = 0; i<emotionAnalysisJarray.length();i++)
+            {
+                JSONObject item = emotionAnalysisJarray.getJSONObject(i);
+                String neutral = item.getString("neutral");
+                String positive = item.getString("positive");
+                String negative = item.getString("negative");
+
+                Log.e("JSON : ",  neutral + ", "+ positive+ ", " + negative);
+
+                HashMap<String,String> hashMap = new HashMap<>();
+                //Log.e("HASH","FINISH");
+
+                hashMap.put("neutral",neutral);
+                hashMap.put("postive", positive);
+                hashMap.put("negative",negative);
+
+
+                //Log.e("PUT","FINISH");
+
+                emotionAnalysis.add(hashMap);
+
+            }
+            Log.e("ARRAYLIST","emotionAnalysis FINISH");
+
+
+            //키워드 분석
             for(int i = 0; i<keywordRankJarray.length();i++)
             {
                 JSONObject item = keywordRankJarray.getJSONObject(i);
@@ -571,7 +620,7 @@ public final class MainActivity extends AppCompatActivity {
                 String keyword = item.getString("keyword");
                 String count = item.getString("count");
 
-                Log.e("JSON : ",  no + ", "+ rank+ ", " + keyword + ", " + count);
+                Log.e("JSON : ",  no + ", "+ rank+ "," + emotionBool + ", " + keyword + ", " + count);
 
                 HashMap<String,String> hashMap = new HashMap<>();
                 //Log.e("HASH","FINISH");
@@ -587,6 +636,31 @@ public final class MainActivity extends AppCompatActivity {
 
             }
             Log.e("ARRAYLIST","keywordRank FINISH");
+
+
+            //긍부정 댓글
+            for(int i = 0; i<emotionCommentsJarray.length();i++)
+            {
+                JSONObject item = emotionCommentsJarray.getJSONObject(i);
+                String no = item.getString("no");
+                String emotionBool = item.getString("emotionBool");
+                String comments = item.getString("comments");
+
+                Log.e("JSON : ",  no + ", "+  emotionBool + ", " + comments);
+
+                HashMap<String,String> hashMap = new HashMap<>();
+                //Log.e("HASH","FINISH");
+
+                hashMap.put("no",no);
+                hashMap.put("emotionBool", emotionBool);
+                hashMap.put("comments", comments);
+
+                //Log.e("PUT","FINISH");
+
+                emotionComments.add(hashMap);
+
+            }
+            Log.e("ARRAYLIST","emotionComments FINISH");
             /*
             ListAdapter adapter = new SimpleAdapter(
                     MainActivity.this, mArrayList,
