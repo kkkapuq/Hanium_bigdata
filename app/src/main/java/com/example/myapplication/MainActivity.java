@@ -215,8 +215,8 @@ public final class MainActivity extends AppCompatActivity {
                     GETAsyncTask GETAsyncTask = new GETAsyncTask();
                     GETAsyncTask.execute(baseUrl);
 
-                    //IMGAsyncTask IMGAsyncTask = new IMGAsyncTask();
-                    //IMGAsyncTask.execute(baseUrl);
+                    IMGAsyncTask IMGAsyncTask = new IMGAsyncTask();
+                    IMGAsyncTask.execute(baseUrl);
 
                     //2.데이터 분석 AsyncTask(TimeSleep)
                     try{
@@ -321,7 +321,6 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public class GETAsyncTask extends AsyncTask<String, Void, String>{
         ProgressDialog progressDialog;
 
@@ -332,7 +331,6 @@ public final class MainActivity extends AppCompatActivity {
 
             startActivity(resultIntent);
         }
-
 
         @Override
         protected String doInBackground(String... strings) {
@@ -361,9 +359,6 @@ public final class MainActivity extends AppCompatActivity {
                 httpURLConnection.setReadTimeout(25000);
                 httpURLConnection.setConnectTimeout(25000);
                 httpURLConnection.setUseCaches(false);
-
-
-
 
                 InputStream is = null;
                 BufferedReader in = null;
@@ -411,16 +406,16 @@ public final class MainActivity extends AppCompatActivity {
             String getUrl = get_Url.getText().toString();
             String[] DATA = getUrl.split("&");
             String imgName = "";
-//            for(int i = 1; i<DATA.length; i++)
-//            {
-//                String[] tmp = DATA[i].split("=");
-//
-//                if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
-//                {
-//                    imgName += tmp[1];
-//                }
-//            }
-            imgName = "0010230003574803" + ".png";
+            for(int i = 1; i<DATA.length; i++)
+            {
+                String[] tmp = DATA[i].split("=");
+
+                if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
+                {
+                    imgName += tmp[1];
+                }
+            }
+            imgName += ".png";
             String parameter = "img/";
             url = url + parameter + imgName;
 
@@ -455,7 +450,6 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void JsonParsing(){
         try {
             //tnews, relevantArticle , timeAnalysis, keywordRank
@@ -468,10 +462,6 @@ public final class MainActivity extends AppCompatActivity {
             JSONArray emotionCommentsJarray = jsonObject.getJSONArray("emotionComments");
 
             Log.e("Function","JsonParsing");
-
-
-
-
 
             for(int i=0;i<tnewsJarray.length();i++){
                 //Log.e("RESULT","FF");
@@ -525,7 +515,7 @@ public final class MainActivity extends AppCompatActivity {
             {
                 JSONObject item = relevanteArticleJarray.getJSONObject(i);
                 String no = item.getString("no");
-                //String nid = item.getString("nid");
+//                String nid = item.getString("nid");
                 String url = item.getString("url");
                 String articleName = item.getString("Name");
                 String articleContent = item.getString("contents");
@@ -542,7 +532,7 @@ public final class MainActivity extends AppCompatActivity {
                 hashMap.put("url", url);
                 hashMap.put("articleName", articleName);
                 hashMap.put("articleContent", articleContent);
-                //hashMap.put("articleImg", articleImg);
+//                hashMap.put("articleImg", articleImg);
                 //Log.e("PUT","FINISH");
 
                 relevantArticle.add(hashMap);
@@ -590,17 +580,14 @@ public final class MainActivity extends AppCompatActivity {
                 //Log.e("HASH","FINISH");
 
                 hashMap.put("neutral",neutral);
-                hashMap.put("postive", positive);
+                hashMap.put("positive", positive);
                 hashMap.put("negative",negative);
-
-
                 //Log.e("PUT","FINISH");
 
                 emotionAnalysis.add(hashMap);
-
             }
+            resultIntent.putExtra("emotionAnalysis", emotionAnalysis);
             Log.e("ARRAYLIST","emotionAnalysis FINISH");
-
 
             //키워드 분석
             for(int i = 0; i<keywordRankJarray.length();i++)
@@ -619,6 +606,7 @@ public final class MainActivity extends AppCompatActivity {
                 //Log.e("HASH","FINISH");
 
                 hashMap.put("no",no);
+                hashMap.put("emotionBool", emotionBool);
                 hashMap.put("rank", rank);
                 hashMap.put("keyword", keyword);
                 hashMap.put("count", count);
@@ -648,10 +636,9 @@ public final class MainActivity extends AppCompatActivity {
                 hashMap.put("comments", comments);
 
                 //Log.e("PUT","FINISH");
-
                 emotionComments.add(hashMap);
-
             }
+            resultIntent.putExtra("emotionComments", emotionComments);
             Log.e("ARRAYLIST","emotionComments FINISH");
             /*
             ListAdapter adapter = new SimpleAdapter(

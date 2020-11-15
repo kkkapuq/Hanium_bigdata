@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.ResultActivity;
 import com.github.mikephil.charting.animation.Easing;
@@ -34,6 +36,24 @@ public class FragmentKeyword extends Fragment {
 
     }
 
+    public void setWordcloud(View view){
+        ImageView wordcloud = view.findViewById(R.id.wordcloud);
+        HashMap<String, String> map = new HashMap<String, String>();
+        String url = "";
+        for(int i = 0; i < keywordRankArrayList.size(); i++){
+            Object temp = keywordRankArrayList.get(i).get("wordcloud");
+            if(temp == null)
+                continue;
+            else
+                url = String.valueOf(temp);
+        }
+
+        if(url.equals(""))
+            wordcloud.setImageResource(R.drawable.img_noimg);
+        else
+            Glide.with(this).load(url).into(wordcloud);
+    }
+
     public void posKeywordChart(View view){
         PieChart posKeywordChart = view.findViewById(R.id.posKeywordChart);
         posKeywordChart.setUsePercentValues(true);
@@ -45,11 +65,28 @@ public class FragmentKeyword extends Fragment {
         posKeywordChart.setTransparentCircleRadius(61f);
 
         ArrayList posValues = new ArrayList();
-        posValues.add(new PieEntry(63.0F, "좋은"));
-        posValues.add(new PieEntry(54.0F, "긍정적"));
-        posValues.add(new PieEntry(30.0F, "용기있는"));
-        posValues.add(new PieEntry(28.0F, "정의로운"));
-        posValues.add(new PieEntry(19.0F, "최고"));
+        int cnt = 0;
+
+        HashMap<String, String> map1 = new HashMap<String, String>();
+        HashMap<String, String> map2 = new HashMap<String, String>();
+        HashMap<String, String> map3 = new HashMap<String, String>();
+        HashMap<String, String> map4 = new HashMap<String, String>();
+        HashMap<String, String> map5 = new HashMap<String, String>();
+
+//        for(int i = 0; i < keywordRankArrayList.size(); i++){
+//            Object temp = keywordRankArrayList.get(i).get("emotionBool");
+//            if(String.valueOf(temp).equals("1")){
+//                map
+//            }
+//            else
+//                url = String.valueOf(temp);
+//        }
+
+        posValues.add(new PieEntry(Float.parseFloat(map1.get("count")), map1.get("keyword")));
+        posValues.add(new PieEntry(Float.parseFloat(map2.get("count")), map2.get("keyword")));
+        posValues.add(new PieEntry(Float.parseFloat(map3.get("count")), map3.get("keyword")));
+        posValues.add(new PieEntry(Float.parseFloat(map4.get("count")), map4.get("keyword")));
+        posValues.add(new PieEntry(Float.parseFloat(map5.get("count")), map5.get("keyword")));
 
         posKeywordChart.animateY(2000, Easing.EaseInOutCubic);
 
@@ -86,11 +123,18 @@ public class FragmentKeyword extends Fragment {
         posKeywordChart.setTransparentCircleRadius(61f);
 
         ArrayList negValues = new ArrayList();
-        negValues.add(new PieEntry(63.0F, "나쁜"));
-        negValues.add(new PieEntry(37.0F, "거지같은"));
-        negValues.add(new PieEntry(31.0F, "이상한"));
-        negValues.add(new PieEntry(18.0F, "쓰레기같은"));
-        negValues.add(new PieEntry(3.0F, "최악의"));
+
+        HashMap<String, String> map1 = keywordRankArrayList.get(25);
+        HashMap<String, String> map2 = keywordRankArrayList.get(26);
+        HashMap<String, String> map3 = keywordRankArrayList.get(27);
+        HashMap<String, String> map4 = keywordRankArrayList.get(28);
+        HashMap<String, String> map5 = keywordRankArrayList.get(29);
+
+        negValues.add(new PieEntry(Float.parseFloat(map1.get("count")), map1.get("keyword")));
+        negValues.add(new PieEntry(Float.parseFloat(map2.get("count")), map2.get("keyword")));
+        negValues.add(new PieEntry(Float.parseFloat(map3.get("count")), map3.get("keyword")));
+        negValues.add(new PieEntry(Float.parseFloat(map4.get("count")), map4.get("keyword")));
+        negValues.add(new PieEntry(Float.parseFloat(map5.get("count")), map5.get("keyword")));
 
         posKeywordChart.animateY(2000, Easing.EaseInOutCubic);
 
@@ -126,6 +170,7 @@ public class FragmentKeyword extends Fragment {
 
         keywordRankArrayList = (ArrayList<HashMap>) bundle.getSerializable("keywordRankArrayList");
 
+        setWordcloud(view);
         posKeywordChart(view);
         negKeywordChart(view);
 
