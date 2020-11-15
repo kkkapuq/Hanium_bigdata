@@ -215,8 +215,8 @@ public final class MainActivity extends AppCompatActivity {
                     GETAsyncTask GETAsyncTask = new GETAsyncTask();
                     GETAsyncTask.execute(baseUrl);
 
-                    //IMGAsyncTask IMGAsyncTask = new IMGAsyncTask();
-                    //IMGAsyncTask.execute(baseUrl);
+                    IMGAsyncTask IMGAsyncTask = new IMGAsyncTask();
+                    IMGAsyncTask.execute(baseUrl);
 
                     //2.데이터 분석 AsyncTask(TimeSleep)
                     try{
@@ -321,7 +321,6 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public class GETAsyncTask extends AsyncTask<String, Void, String>{
         ProgressDialog progressDialog;
 
@@ -332,7 +331,6 @@ public final class MainActivity extends AppCompatActivity {
 
             startActivity(resultIntent);
         }
-
 
         @Override
         protected String doInBackground(String... strings) {
@@ -361,9 +359,6 @@ public final class MainActivity extends AppCompatActivity {
                 httpURLConnection.setReadTimeout(25000);
                 httpURLConnection.setConnectTimeout(25000);
                 httpURLConnection.setUseCaches(false);
-
-
-
 
                 InputStream is = null;
                 BufferedReader in = null;
@@ -456,7 +451,6 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void JsonParsing(){
         try {
             //tnews, relevantArticle , timeAnalysis, keywordRank
@@ -469,10 +463,6 @@ public final class MainActivity extends AppCompatActivity {
             JSONArray emotionCommentsJarray = jsonObject.getJSONArray("emotionComments");
 
             Log.e("Function","JsonParsing");
-
-
-
-
 
             for(int i=0;i<tnewsJarray.length();i++){
                 //Log.e("RESULT","FF");
@@ -531,7 +521,7 @@ public final class MainActivity extends AppCompatActivity {
                 String articleName = item.getString("Name");
                 String articleContent = item.getString("contents");
                 //String articleImg = item.getString("articleImg");
-                Log.e("JSON : ",  no + ", "+ url+ ", " + articleName + ", " +
+                Log.e("JSON : ",  no + ", "+ url+ ", " + articleName +
                         articleContent);
 
                 HashMap<String,String> hashMap = new HashMap<>();
@@ -591,17 +581,14 @@ public final class MainActivity extends AppCompatActivity {
                 //Log.e("HASH","FINISH");
 
                 hashMap.put("neutral",neutral);
-                hashMap.put("postive", positive);
+                hashMap.put("positive", positive);
                 hashMap.put("negative",negative);
-
-
                 //Log.e("PUT","FINISH");
 
                 emotionAnalysis.add(hashMap);
-
             }
+            resultIntent.putExtra("emotionAnalysis", emotionAnalysis);
             Log.e("ARRAYLIST","emotionAnalysis FINISH");
-
 
             //키워드 분석
             for(int i = 0; i<keywordRankJarray.length();i++)
@@ -644,7 +631,7 @@ public final class MainActivity extends AppCompatActivity {
                 String replyAllCount = item.getString("replyAllCount");
                 String usrName = item.getString("usrName");
 
-                Log.e("JSON : ",  no + ", "+  emotionBool + ", " + comments +", "+sympathyCount + ", " + antipathyCount + ", "+replyAllCount +", " + usrName);
+                Log.e("JSON : ",  no + ", "+  emotionBool + ", " + comments);
 
                 HashMap<String,String> hashMap = new HashMap<>();
                 //Log.e("HASH","FINISH");
@@ -659,10 +646,9 @@ public final class MainActivity extends AppCompatActivity {
 
 
                 //Log.e("PUT","FINISH");
-
                 emotionComments.add(hashMap);
-
             }
+            resultIntent.putExtra("emotionComments", emotionComments);
             Log.e("ARRAYLIST","emotionComments FINISH");
             /*
             ListAdapter adapter = new SimpleAdapter(

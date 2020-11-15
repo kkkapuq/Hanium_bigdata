@@ -430,6 +430,8 @@ public class ResultActivity extends AppCompatActivity {
     ArrayList<HashMap<String, String>> timeAnalysisArrayList;
     ArrayList<HashMap<String, String>> relevantArticleArrayList;
     ArrayList<HashMap<String, String>> keywordRankArrayList;
+    ArrayList<HashMap<String, String>> emotionAnalysisArrayList;
+    ArrayList<HashMap<String, String>> emotionCommentsArrayList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -443,6 +445,8 @@ public class ResultActivity extends AppCompatActivity {
         timeAnalysisArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("timeAnalysis");
         relevantArticleArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("relevantArticle");
         keywordRankArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("keywordRank");
+        emotionAnalysisArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("emotionAnalysis");
+        emotionCommentsArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("emotionComments");
 
         //워드클라우드 이미지 따로 받아오기
         String wordcloud = getIntent().getStringExtra("wordcloud");
@@ -480,11 +484,14 @@ public class ResultActivity extends AppCompatActivity {
         Fragment fragmentEmotion = new FragmentEmotion();
         Fragment fragmentEtc = new FragmentEtc();
 
+        //프래그먼트로 넘겨줄 arraylist친구들
         Bundle bundle = new Bundle();
         bundle.putSerializable("tnewsArrayList", tnewsArrayList);
         bundle.putSerializable("timeAnalysisArrayList", timeAnalysisArrayList);
         bundle.putSerializable("relevantArticleArrayList", relevantArticleArrayList);
         bundle.putSerializable("keywordRankArrayList", keywordRankArrayList);
+        bundle.putSerializable("emotionAnalysisArrayList", emotionAnalysisArrayList);
+        bundle.putSerializable("emotionCommentsArrayList", emotionCommentsArrayList);
 
         fragmentTotal.setArguments(bundle);
         fragmentKeyword.setArguments(bundle);

@@ -25,7 +25,9 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 //import com.example.myapplication.ResultActivity;
 
@@ -46,10 +48,10 @@ public class FragmentTotal extends Fragment {
     ArrayList<HashMap> timeAnalysisArrayList;
     ArrayList<HashMap> relevantArticleArrayList;
 
-    public void Fragment_Total(){
+    public void Fragment_Total() {
     }
 
-    public void sexRateChart(View view){
+    public void sexRateChart(View view) {
         PieChart sexRateChart;
         sexRateChart = view.findViewById(R.id.sexRateChart);
         sexRateChart.setUsePercentValues(true);
@@ -62,7 +64,6 @@ public class FragmentTotal extends Fragment {
 
         ArrayList sexValues = new ArrayList();
         HashMap<String, String> map = tnewsArrayList.get(0);
-        float temp = Float.parseFloat(map.get("male"));
 
         sexValues.add(new PieEntry(Float.parseFloat(map.get("male")), "남성"));
         sexValues.add(new PieEntry(Float.parseFloat(map.get("female")), "여성"));
@@ -74,26 +75,27 @@ public class FragmentTotal extends Fragment {
                 Color.parseColor("#e7b7cc")
         };
         ArrayList<Integer> colors = new ArrayList<Integer>();
-        for(int c : sexColors)
+        for (int c : sexColors)
             colors.add(c);
 
-        PieDataSet sexDataSet = new PieDataSet((List)sexValues, "성별");
+        PieDataSet sexDataSet = new PieDataSet((List) sexValues, "성별");
         sexDataSet.setSliceSpace(3.0F);
         sexDataSet.setSelectionShift(2.0F);
         sexDataSet.setColors(colors);
 
-        PieData sexData = new PieData((IPieDataSet)sexDataSet);
+        PieData sexData = new PieData((IPieDataSet) sexDataSet);
         sexData.setValueTextSize(10.0F);
         sexData.setValueTextColor(Color.BLACK);
 
         sexRateChart.setData(sexData);
         sexRateChart.invalidate();
     }
-    public void ageRateChart(View view){
+
+    public void ageRateChart(View view) {
         BarChart ageRateChart = view.findViewById(R.id.ageRateChart);
         ageRateChart.setExtraOffsets(5.0f, 10.0f, 5.0f, 5.0f);
 
-        ArrayList ageValues = new ArrayList();
+        final ArrayList ageValues = new ArrayList();
 
         HashMap<String, String> map = tnewsArrayList.get(0);
 
@@ -105,13 +107,20 @@ public class FragmentTotal extends Fragment {
         ageValues.add(new BarEntry(5.0F, Float.parseFloat(map.get("overSixty")), "60대 이상"));
 
 
+        final ArrayList<String> xLabel = new ArrayList<>();
+        xLabel.add("10대");
+        xLabel.add("20대");
+        xLabel.add("30대");
+        xLabel.add("40대");
+        xLabel.add("50대");
+        xLabel.add("60대 이상");
+
         XAxis xAxis = ageRateChart.getXAxis();
-//        xAxis.setValueFormatter(new ValueFormatter() {
-//            @Override
-//            public String getAxisLabel(float value, AxisBase axis) {
-//                return ageValues.get((int)value);
-//            }
-//        });
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(xLabel));
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
 
         ageRateChart.animateY(4000, Easing.EaseInOutCubic);
 
@@ -124,7 +133,7 @@ public class FragmentTotal extends Fragment {
                 Color.parseColor("#d4d4d4"),
         };
         ArrayList<Integer> colors = new ArrayList<Integer>();
-        for(int c : ageColors)
+        for (int c : ageColors)
             colors.add(c);
 
         BarDataSet ageDataSet = new BarDataSet(ageValues, " 연령대");
@@ -137,7 +146,8 @@ public class FragmentTotal extends Fragment {
         ageRateChart.invalidate();
 
     }
-    public void timeLineChart(View view){
+
+    public void timeLineChart(View view) {
         ArrayList timeValues = new ArrayList();
 
         HashMap<String, String> map1 = timeAnalysisArrayList.get(0);
@@ -172,15 +182,16 @@ public class FragmentTotal extends Fragment {
         XAxis xAxis = timeLineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(){
+        ValueFormatter formatter = new ValueFormatter() {
             @Override
-            public String getFormattedValue(float value, AxisBase axis){
-                return xLabel.get((int)value);
+            public String getFormattedValue(float value) {
+                return xLabel.get((int) value);
             }
-        });
-        xAxis.setGranularity(1f);
+        };
+        xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
+        xAxis.setValueFormatter(formatter);
 
-        LineData timeData = new LineData((List)timeDataset);
+        LineData timeData = new LineData((List) timeDataset);
         timeLineChart.setData(timeData);
         timeLineChart.invalidate();
     }
@@ -194,7 +205,6 @@ public class FragmentTotal extends Fragment {
 
         tnewsArrayList = (ArrayList<HashMap>) bundle.getSerializable("tnewsArrayList");
         timeAnalysisArrayList = (ArrayList<HashMap>) bundle.getSerializable("timeAnalysisArrayList");
-        relevantArticleArrayList = (ArrayList<HashMap>) bundle.getSerializable("relevantArticleArrayList");
 
         sexRateChart(view);
         ageRateChart(view);
