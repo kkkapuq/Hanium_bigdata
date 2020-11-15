@@ -536,6 +536,8 @@ public final class MainActivity extends AppCompatActivity {
                 HashMap<String,String> hashMap = new HashMap<>();
                 //Log.e("HASH","FINISH");
 
+
+
                 hashMap.put("no",no);
                 hashMap.put("url", url);
                 hashMap.put("articleName", articleName);
