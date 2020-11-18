@@ -161,30 +161,30 @@ public class FragmentEmotion extends Fragment {
         HashMap<String, String> map4 = emotionCommentsArrayList.get(3);
         HashMap<String, String> map5 = emotionCommentsArrayList.get(4);
 
-        posBestCommId1.setText("hwak****");
+        posBestCommId1.setText(map1.get("usrName"));
         posBestCommCon1.setText(map1.get("comments"));
-        posBestCommLike1.setText("2036");
-        posBestCommDisLike1.setText("50");
+        posBestCommLike1.setText(map1.get("sympathyCount"));
+        posBestCommDisLike1.setText(map1.get("antipathyCount"));
 
-        posBestCommId2.setText("dudd****");
+        posBestCommId2.setText(map2.get("usrName"));
         posBestCommCon2.setText(map2.get("comments"));
-        posBestCommLike2.setText("151");
-        posBestCommDisLike2.setText("2");
+        posBestCommLike2.setText(map2.get("sympathyCount"));
+        posBestCommDisLike2.setText(map2.get("antipathyCount"));
 
-        posBestCommId3.setText("lhn0****");
+        posBestCommId3.setText(map3.get("usrName"));
         posBestCommCon3.setText(map3.get("comments"));
-        posBestCommLike3.setText("74");
-        posBestCommDisLike3.setText("2");
+        posBestCommLike3.setText(map3.get("sympathyCount"));
+        posBestCommDisLike3.setText(map3.get("antipathyCount"));
 
-        posBestCommId4.setText("yo53****");
+        posBestCommId4.setText(map4.get("usrName"));
         posBestCommCon4.setText(map4.get("comments"));
-        posBestCommLike4.setText("27");
-        posBestCommDisLike4.setText("0");
+        posBestCommLike4.setText(map4.get("sympathyCount"));
+        posBestCommDisLike4.setText(map4.get("antipathyCount"));
 
-        posBestCommId5.setText("simi****");
+        posBestCommId5.setText(map5.get("usrName"));
         posBestCommCon5.setText(map5.get("comments"));
-        posBestCommLike5.setText("20");
-        posBestCommDisLike5.setText("1");
+        posBestCommLike5.setText(map5.get("sympathyCount"));
+        posBestCommDisLike5.setText(map5.get("antipathyCount"));
     }
     public void negBestCommentSetter(View view){
         TextView negBestCommId1 = view.findViewById(R.id.negBestCommId1);
@@ -218,30 +218,30 @@ public class FragmentEmotion extends Fragment {
         HashMap<String, String> map4 = emotionCommentsArrayList.get(8);
         HashMap<String, String> map5 = emotionCommentsArrayList.get(9);
 
-        negBestCommId1.setText("lgh6****");
+        negBestCommId1.setText(map1.get("usrName"));
         negBestCommCon1.setText(map1.get("comments"));
-        negBestCommLike1.setText("709");
-        negBestCommDisLike1.setText("13");
+        negBestCommLike1.setText(map1.get("sympathyCount"));
+        negBestCommDisLike1.setText(map1.get("antipathyCount"));
 
-        negBestCommId2.setText("ssel****");
+        negBestCommId2.setText(map2.get("usrName"));
         negBestCommCon2.setText(map2.get("comments"));
-        negBestCommLike2.setText("526");
-        negBestCommDisLike2.setText("40");
+        negBestCommLike2.setText(map2.get("sympathyCount"));
+        negBestCommDisLike2.setText(map2.get("antipathyCount"));
 
-        negBestCommId3.setText("syti****");
+        negBestCommId3.setText(map3.get("usrName"));
         negBestCommCon3.setText(map3.get("comments"));
-        negBestCommLike3.setText("290");
-        negBestCommDisLike3.setText("5");
+        negBestCommLike3.setText(map3.get("sympathyCount"));
+        negBestCommDisLike3.setText(map3.get("antipathyCount"));
 
-        negBestCommId4.setText("mona****");
+        negBestCommId4.setText(map4.get("usrName"));
         negBestCommCon4.setText(map4.get("comments"));
-        negBestCommLike4.setText("94");
-        negBestCommDisLike4.setText("1");
+        negBestCommLike4.setText(map4.get("sympathyCount"));
+        negBestCommDisLike4.setText(map4.get("antipathyCount"));
 
-        negBestCommId5.setText("syti****");
+        negBestCommId5.setText(map5.get("usrName"));
         negBestCommCon5.setText(map5.get("comments"));
-        negBestCommLike5.setText("84");
-        negBestCommDisLike5.setText("3");
+        negBestCommLike5.setText(map5.get("sympathyCount"));
+        negBestCommDisLike5.setText(map5.get("antipathyCount"));
     }
 
     @Nullable

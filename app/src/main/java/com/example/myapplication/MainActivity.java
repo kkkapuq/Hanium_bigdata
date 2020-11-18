@@ -146,8 +146,13 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -157,6 +162,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import android.app.ProgressDialog;
 import android.widget.Toast;
@@ -189,10 +195,12 @@ public final class MainActivity extends AppCompatActivity {
 
         get_Url = (EditText)findViewById(R.id.edt_Url);
         Button btn_search = findViewById(R.id.btn_search);
+        final String newsUrl = get_Url.getText().toString();
+
+//        getnewsUrl();
 
         btn_search.setOnClickListener((new OnClickListener() {
             public final void onClick(View it) {
-
                 //인터넷 연결 체크
                 int status = NetworkStatus.getConnectivityStatus(getApplicationContext());
                 if(status == NetworkStatus.TYPE_MOBILE){
@@ -202,21 +210,27 @@ public final class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                //로딩창 띄워주기
+                CheckTypesTask task = new CheckTypesTask();
+                task.execute();
+
                 if(get_Url.getText() != null)
                 {
                     //정상적인 링크
                     //1.Crawling
                     Log.e("DATA", "Correct");
 
+//                    GetNewsInfoTask GetNewsInfoTask = new GetNewsInfoTask();
+//                    GetNewsInfoTask.execute(baseUrl);
 
                     POSTAsyncTask POSTAsyncTask = new POSTAsyncTask();
                     POSTAsyncTask.execute(baseUrl);
 
-                    GETAsyncTask GETAsyncTask = new GETAsyncTask();
-                    GETAsyncTask.execute(baseUrl);
-
                     IMGAsyncTask IMGAsyncTask = new IMGAsyncTask();
                     IMGAsyncTask.execute(baseUrl);
+
+                    GETAsyncTask GETAsyncTask = new GETAsyncTask();
+                    GETAsyncTask.execute(baseUrl);
 
                     //2.데이터 분석 AsyncTask(TimeSleep)
                     try{
@@ -237,6 +251,78 @@ public final class MainActivity extends AppCompatActivity {
         }));
 
     }
+
+    //로딩창 구현
+    private class CheckTypesTask extends AsyncTask<Void, Void, Void>{
+        ProgressDialog asyncDialog = new ProgressDialog(MainActivity.this);
+
+        @Override
+        protected void onPreExecute(){
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("결과 화면을 구성중입니다...");
+
+            asyncDialog.show();
+            super.onPreExecute();
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try{
+                //여기에 통신관련 소스 넣고 콜백으로 받아야됨
+                    Thread.sleep(10000);
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result){
+
+            asyncDialog.dismiss();
+            super.onPostExecute(result);
+        }
+    }
+
+//    private class GetNewsInfoTask extends AsyncTask<String, Void, String> {
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            HashMap<String, String> hashMap = new HashMap<String, String>();
+//
+//            String url = get_Url.getText().toString();
+//
+//            try {
+//                Document document = Jsoup.connect(url).get();
+//                Elements elements = document.select("div.article_info h3");
+//                String newsTitle = elements.text();
+//                hashMap.put("newsTitle", newsTitle);
+//                tnews.add(hashMap);
+//
+////                elements = document.select("div#spiLayer > div > ul > li");
+////
+////                for(Element i : elements){
+////
+////                }
+////                hashMap.put("emotion_like", elements.text());
+////
+////                elements = document.select("div#cbox_module div div ul li div div");
+////                hashMap.put("male", elements.text());
+////
+////                elements = document.select(".lotto_area .winner_money #lottoNo1SuAmount");
+////                hashMap.put("winGameMoney", elements.text());
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String s) {
+//            super.onPostExecute(s);
+//
+//
+//        }
+//    }
+
 
     public class POSTAsyncTask extends AsyncTask<String, Void, String>{
 
@@ -401,50 +487,64 @@ public final class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-            String url = strings[0];
-            Bitmap bitmap;
-            String getUrl = get_Url.getText().toString();
-            String[] DATA = getUrl.split("&");
-            String imgName = "";
-            for(int i = 1; i<DATA.length; i++)
-            {
-                String[] tmp = DATA[i].split("=");
-
-                if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
+            String[] temp = new String[4];
+            for(int i = 0; i < temp.length; i++){
+                String url = strings[0];
+                Bitmap bitmap;
+                String getUrl = get_Url.getText().toString();
+                String[] DATA = getUrl.split("&");
+                String imgName = "";
+                for(int j = 1; j<DATA.length; j++)
                 {
-                    imgName += tmp[1];
+                    String[] tmp = DATA[j].split("=");
+
+                    if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
+                    {
+                        imgName += tmp[1];
+                    }
                 }
-            }
 //            imgName = "0010230003574803" + ".png";
-            imgName = "1"+imgName+".png";
-            String parameter = "img/";
-            url = url + parameter + imgName;
+                imgName = "1"+imgName; //+".png";
+                String parameter = "img/";
+                switch (i){
+                    case 0:
+                        temp[i] = url + parameter + imgName + ".png";
+                        resultIntent.putExtra("wordcloud", temp[i]);
+                        break;
+                    default:
+                        temp[i] = url + parameter + imgName + "_" + Integer.toString(i) + ".jpg";
+//                        HashMap<String, String> map = new HashMap<String, String>();
+//                        map.put("simArticleImg"+Integer.toString(i), temp[i]);
+//                        relevantArticle.add(i,map);
+                        resultIntent.putExtra("simArticleImg"+Integer.toString(i), temp[i]);
+                        break;
 
-            try{
-                Log.e("url",url);
-                URL serverURL = new URL(url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection)serverURL.openConnection();
-                if(httpURLConnection == null) {
-                    Log.e("LOG.TAG" ,"ByPostMethod, Connection is null");
                 }
-                else
-                {
-                    Log.e("LOG.TAG" ,"ByPostMethod, Connection is Succesful");
+
+                try{
+                    Log.e("url",url);
+                    URL serverURL = new URL(url);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection)serverURL.openConnection();
+                    if(httpURLConnection == null) {
+                        Log.e("LOG.TAG" ,"ByPostMethod, Connection is null");
+                    }
+                    else
+                    {
+                        Log.e("LOG.TAG" ,"ByPostMethod, Connection is Succesful");
+                    }
+
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.connect();
+
+                    InputStream is = httpURLConnection.getInputStream();
+                    bitmap = BitmapFactory.decodeStream(is);
+
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.connect();
-
-                InputStream is = httpURLConnection.getInputStream();
-                bitmap = BitmapFactory.decodeStream(is);
-
-                resultIntent.putExtra("wordcloud", url);
-
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
 
             return null;

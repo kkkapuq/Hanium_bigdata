@@ -67,28 +67,24 @@ public class FragmentKeyword extends Fragment {
         ArrayList posValues = new ArrayList();
         int cnt = 0;
 
-        HashMap<String, String> map1 = new HashMap<String, String>();
-        HashMap<String, String> map2 = new HashMap<String, String>();
-        HashMap<String, String> map3 = new HashMap<String, String>();
-        HashMap<String, String> map4 = new HashMap<String, String>();
-        HashMap<String, String> map5 = new HashMap<String, String>();
+        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
-//        for(int i = 0; i < keywordRankArrayList.size(); i++){
-//            Object temp = keywordRankArrayList.get(i).get("emotionBool");
-//            if(String.valueOf(temp).equals("1")){
-//                map
-//            }
-//            else
-//                url = String.valueOf(temp);
-//        }
+        HashMap<String, String> map = new HashMap<String, String>();
 
-        posValues.add(new PieEntry(Float.parseFloat(map1.get("count")), map1.get("keyword")));
-        posValues.add(new PieEntry(Float.parseFloat(map2.get("count")), map2.get("keyword")));
-        posValues.add(new PieEntry(Float.parseFloat(map3.get("count")), map3.get("keyword")));
-        posValues.add(new PieEntry(Float.parseFloat(map4.get("count")), map4.get("keyword")));
-        posValues.add(new PieEntry(Float.parseFloat(map5.get("count")), map5.get("keyword")));
+        //긍정 키워드 탑 5 뽑기
+        for(int i = 0; i < keywordRankArrayList.size(); i++){
+            Object temp = keywordRankArrayList.get(i).get("emotionBool");
+            if(String.valueOf(temp).equals("1")){
+                if(cnt == 5)
+                    break;
+                Object count = keywordRankArrayList.get(i).get("count");
+                Object keyword = keywordRankArrayList.get(i).get("keyword");
+                posValues.add(new PieEntry(Float.parseFloat(count.toString()), keyword.toString()));
+                cnt++;
+            }
+        }
 
-        posKeywordChart.animateY(2000, Easing.EaseInOutCubic);
+        posKeywordChart.animateY(5000, Easing.EaseInOutCubic);
 
         final int[] posColors = {
                 Color.parseColor("#0004ff"),
@@ -113,30 +109,32 @@ public class FragmentKeyword extends Fragment {
         posKeywordChart.invalidate();
     }
     public void negKeywordChart(View view){
-        PieChart posKeywordChart = view.findViewById(R.id.negKeywordChart);
-        posKeywordChart.setUsePercentValues(true);
-        posKeywordChart.getDescription().setEnabled(false);
-        posKeywordChart.setExtraOffsets(5f, 10f, 5f, 5f);
-        posKeywordChart.setDragDecelerationFrictionCoef(0.95f);
-        posKeywordChart.setDrawHoleEnabled(false);
-        posKeywordChart.setHoleColor(Color.BLACK);
-        posKeywordChart.setTransparentCircleRadius(61f);
+        PieChart negKeywordChart = view.findViewById(R.id.negKeywordChart);
+        negKeywordChart.setUsePercentValues(true);
+        negKeywordChart.getDescription().setEnabled(false);
+        negKeywordChart.setExtraOffsets(5f, 10f, 5f, 5f);
+        negKeywordChart.setDragDecelerationFrictionCoef(0.95f);
+        negKeywordChart.setDrawHoleEnabled(false);
+        negKeywordChart.setHoleColor(Color.BLACK);
+        negKeywordChart.setTransparentCircleRadius(61f);
 
         ArrayList negValues = new ArrayList();
+        int cnt = 0;
 
-        HashMap<String, String> map1 = keywordRankArrayList.get(25);
-        HashMap<String, String> map2 = keywordRankArrayList.get(26);
-        HashMap<String, String> map3 = keywordRankArrayList.get(27);
-        HashMap<String, String> map4 = keywordRankArrayList.get(28);
-        HashMap<String, String> map5 = keywordRankArrayList.get(29);
+        //부정 키워드 탑5 뽑기
+        for(int i = 0; i < keywordRankArrayList.size(); i++) {
+            Object temp = keywordRankArrayList.get(i).get("emotionBool");
+            if (String.valueOf(temp).equals("0")) {
+                if (cnt == 5)
+                    break;
+                Object count = keywordRankArrayList.get(i).get("count");
+                Object keyword = keywordRankArrayList.get(i).get("keyword");
+                negValues.add(new PieEntry(Float.parseFloat(count.toString()), keyword.toString()));
+                cnt++;
+            }
+        }
 
-        negValues.add(new PieEntry(Float.parseFloat(map1.get("count")), map1.get("keyword")));
-        negValues.add(new PieEntry(Float.parseFloat(map2.get("count")), map2.get("keyword")));
-        negValues.add(new PieEntry(Float.parseFloat(map3.get("count")), map3.get("keyword")));
-        negValues.add(new PieEntry(Float.parseFloat(map4.get("count")), map4.get("keyword")));
-        negValues.add(new PieEntry(Float.parseFloat(map5.get("count")), map5.get("keyword")));
-
-        posKeywordChart.animateY(2000, Easing.EaseInOutCubic);
+        negKeywordChart.animateY(2000, Easing.EaseInOutCubic);
 
         final int[] posColors = {
                 Color.parseColor("#ff2626"),
@@ -157,8 +155,8 @@ public class FragmentKeyword extends Fragment {
         PieData negData = new PieData((IPieDataSet)negDataSet);
         negData.setValueTextSize(10.0F);
         negData.setValueTextColor(Color.BLACK);
-        posKeywordChart.setData(negData);
-        posKeywordChart.invalidate();
+        negKeywordChart.setData(negData);
+        negKeywordChart.invalidate();
     }
 
     @Nullable

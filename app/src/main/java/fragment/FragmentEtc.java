@@ -41,36 +41,54 @@ public class FragmentEtc extends Fragment {
         TextView simArticleTitle3 = view.findViewById(R.id.simArticleTitle3);
         TextView simArticleCon3 = view.findViewById(R.id.simArticleCon3);
 
-        HashMap<String, String> map = relevantArticleArrayList.get(0);
-        String url = map.get("articleImg");
+        String[] url = new String[relevantArticleArrayList.size()];
+        for(int i = 0; i < relevantArticleArrayList.size(); i++){
+            Object temp = relevantArticleArrayList.get(i).get("flag");
+            if(temp == null)
+                continue;
+            else {
+                for(int j = 0; j < 3; j++){
+                    Object temp2 = relevantArticleArrayList.get(i).get("simArticleImg"+Integer.toString(j+1));
+                    if(temp2 == null)
+                        break;
+                    url[j] = String.valueOf(temp2);
+                }
+            }
+        }
 
-        if(url != null)
-            Glide.with(this).load(url).into(simArticleImg1);
+//        for(int i = 0; i < relevantArticleArrayList.size(); i++){
+//            if(url[i] != null)
+//                Glide.with(this).load(url).into(simArticleImg);
+//        }
+
+        //1번 기사 정보 세팅
+        HashMap<String, String> map = relevantArticleArrayList.get(0);
+        if(map != null)
+            Glide.with(this).load(url[0]).into(simArticleImg1);
         else
             simArticleImg1.setImageResource(R.drawable.img_noimg);
         simArticleTitle1.setText(map.get("articleName"));
         simArticleCon1.setText(map.get("articleContent"));
 
+        //2번 기사 정보 세팅
         map = relevantArticleArrayList.get(1);
-        url = map.get("articleImg");
-
-        if(url != null)
-            Glide.with(this).load(url).into(simArticleImg1);
+        if(map != null)
+            Glide.with(this).load(url[1]).into(simArticleImg2);
         else
             simArticleImg2.setImageResource(R.drawable.img_noimg);
         simArticleTitle2.setText(map.get("articleName"));
         simArticleCon2.setText(map.get("articleContent"));
 
+        //3번 기사 정보 세팅
         map = relevantArticleArrayList.get(2);
-        url = map.get("articleImg");
-
-        if(url != null)
-            Glide.with(this).load(url).into(simArticleImg1);
+        if(map != null)
+            Glide.with(this).load(url[2]).into(simArticleImg3);
         else
             simArticleImg3.setImageResource(R.drawable.img_noimg);
         simArticleTitle3.setText(map.get("articleName"));
         simArticleCon3.setText(map.get("articleContent"));
     }
+
 
     @Nullable
     @Override

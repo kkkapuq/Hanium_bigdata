@@ -65,10 +65,10 @@ public class FragmentTotal extends Fragment {
         ArrayList sexValues = new ArrayList();
         HashMap<String, String> map = tnewsArrayList.get(0);
 
-        sexValues.add(new PieEntry(Float.parseFloat(map.get("male")), "남성"));
-        sexValues.add(new PieEntry(Float.parseFloat(map.get("female")), "여성"));
+        sexValues.add(new PieEntry(72.0f, "남성"));
+        sexValues.add(new PieEntry(28.0f, "여성"));
 
-        sexRateChart.animateY(2000, Easing.EaseInOutCubic);
+        sexRateChart.animateY(5000, Easing.EaseInOutCubic);
 
         final int[] sexColors = {
                 Color.parseColor("#2b88f2"),
@@ -99,12 +99,12 @@ public class FragmentTotal extends Fragment {
 
         HashMap<String, String> map = tnewsArrayList.get(0);
 
-        ageValues.add(new BarEntry(0.0f, Float.parseFloat(map.get("teen")), "10대"));
-        ageValues.add(new BarEntry(1.0F, Float.parseFloat(map.get("twenty")), "20대"));
-        ageValues.add(new BarEntry(2.0F, Float.parseFloat(map.get("thirty")), "30대"));
-        ageValues.add(new BarEntry(3.0F, Float.parseFloat(map.get("fourty")), "40대"));
-        ageValues.add(new BarEntry(4.0F, Float.parseFloat(map.get("fifty")), "50대"));
-        ageValues.add(new BarEntry(5.0F, Float.parseFloat(map.get("overSixty")), "60대 이상"));
+        ageValues.add(new BarEntry(0.0f, 10.0f, "10대"));
+        ageValues.add(new BarEntry(1.0F, 30.0f, "20대"));
+        ageValues.add(new BarEntry(2.0F, 40.1f, "30대"));
+        ageValues.add(new BarEntry(3.0F, 64.0f, "40대"));
+        ageValues.add(new BarEntry(4.0F, 35.0f, "50대"));
+        ageValues.add(new BarEntry(5.0F, 5.0f, "60대 이상"));
 
 
         final ArrayList<String> xLabel = new ArrayList<>();
@@ -122,7 +122,7 @@ public class FragmentTotal extends Fragment {
         xAxis.setGranularity(1f);
         xAxis.setGranularityEnabled(true);
 
-        ageRateChart.animateY(4000, Easing.EaseInOutCubic);
+        ageRateChart.animateY(5000, Easing.EaseInOutCubic);
 
         final int[] ageColors = {
                 Color.parseColor("#d4d4d4"),
@@ -169,6 +169,7 @@ public class FragmentTotal extends Fragment {
         LineDataSet setTime = new LineDataSet(timeValues, "시간대별 댓글");
         setTime.setAxisDependency(YAxis.AxisDependency.LEFT);
         setTime.setColor(Color.parseColor("#c39797"));
+        setTime.setLineWidth(6f);
 
         ArrayList timeDataset = new ArrayList();
         timeDataset.add(setTime);
