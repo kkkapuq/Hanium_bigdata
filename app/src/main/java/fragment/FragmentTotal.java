@@ -149,15 +149,24 @@ public class FragmentTotal extends Fragment {
 
     public void timeLineChart(View view) {
         ArrayList timeValues = new ArrayList();
-//
-//        //타임라인 그래프 생성
+
+
+//        int[] timeLineData = new int[24];
+//        //각 시간대별 댓글 수를 Array에 삽입
 //        for(int i = 0; i < timeAnalysisArrayList.size(); i++){
-//            Object temp = timeAnalysisArrayList.get(i).get("emotionBool");
-//            if(String.valueOf(temp).equals("1")){
-//                Object count = timeAnalysisArrayList.get(i).get("count");
-//                Object keyword = timeAnalysisArrayList.get(i).get("keyword");
-//                timeValues.add(new Entry(Float.parseFloat(count.toString()), Float.parseFloat(keyword.toString()));
-//            }
+//            Object temp = timeAnalysisArrayList.get(i).get("time");
+//            String time = temp.toString();
+//            temp = timeAnalysisArrayList.get(i).get("count");
+//            String count = temp.toString();
+//
+//            int commTime = Integer.parseInt(time);
+//            int commCount = Integer.parseInt(count);
+//
+//            timeLineData[commTime] = commCount;
+//        }
+//
+//        for(int i = 0 ; i < timeLineData.length; i++){
+//            timeValues.add(new Entry(i, timeLineData[i]);
 //        }
 
         HashMap<String, String> map1 = timeAnalysisArrayList.get(0);
@@ -185,20 +194,34 @@ public class FragmentTotal extends Fragment {
         timeDataset.add(setTime);
 
         final ArrayList<String> xLabel = new ArrayList<>();
-        xLabel.add("0~6시");
-        xLabel.add("6~12시");
-        xLabel.add("12~18시");
-        xLabel.add("18~0시");
+//        xLabel.add("00시");
+//        xLabel.add("01시");
+//        xLabel.add("02시");
+//        xLabel.add("03시");
+//        xLabel.add("04시");
+//        xLabel.add("05시");
+//        xLabel.add("06시");
+//        xLabel.add("07시");
+//        xLabel.add("08시");
+//        xLabel.add("09시");
+//        xLabel.add("10시");
+//        xLabel.add("11시");
+//        xLabel.add("12시");
+//        xLabel.add("13시");
+//        xLabel.add("14시");
+//        xLabel.add("15시");
+//        xLabel.add("16시");
+//        xLabel.add("17시");
+//        xLabel.add("18시");
+//        xLabel.add("19시");
+//        xLabel.add("20시");
+//        xLabel.add("21시");
+//        xLabel.add("22시");
+//        xLabel.add("23시");
 
-//        //타임라인 그래프 생성
-//        for(int i = 0; i < timeAnalysisArrayList.size(); i++){
-//            Object temp = timeAnalysisArrayList.get(i).get("emotionBool");
-//            if(String.valueOf(temp).equals("1")){
-//                Object count = timeAnalysisArrayList.get(i).get("count");
-//                Object keyword = timeAnalysisArrayList.get(i).get("keyword");
-//                timeValues.add(new Entry(Float.parseFloat(count.toString()), Float.parseFloat(keyword.toString()));
-//            }
-//        }
+        for(int i = 0; i < 24; i++){
+            xLabel.add(String.format("%02d",i) + "시");
+        }
 
         XAxis xAxis = timeLineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);

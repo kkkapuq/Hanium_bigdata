@@ -56,7 +56,7 @@ public class FragmentKeyword extends Fragment {
 
     public void posKeywordChart(View view){
         PieChart posKeywordChart = view.findViewById(R.id.posKeywordChart);
-        posKeywordChart.setUsePercentValues(true);
+        posKeywordChart.setUsePercentValues(false);
         posKeywordChart.getDescription().setEnabled(false);
         posKeywordChart.setExtraOffsets(5f, 10f, 5f, 5f);
         posKeywordChart.setDragDecelerationFrictionCoef(0.95f);
@@ -110,7 +110,7 @@ public class FragmentKeyword extends Fragment {
     }
     public void negKeywordChart(View view){
         PieChart negKeywordChart = view.findViewById(R.id.negKeywordChart);
-        negKeywordChart.setUsePercentValues(true);
+        negKeywordChart.setUsePercentValues(false);
         negKeywordChart.getDescription().setEnabled(false);
         negKeywordChart.setExtraOffsets(5f, 10f, 5f, 5f);
         negKeywordChart.setDragDecelerationFrictionCoef(0.95f);

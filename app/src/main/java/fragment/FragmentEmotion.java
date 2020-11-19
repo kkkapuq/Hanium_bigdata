@@ -92,7 +92,7 @@ public class FragmentEmotion extends Fragment {
 
     public void emotionSubChart(View view){
         PieChart emotionSubChart = view.findViewById(R.id.emotionSubChart);
-        emotionSubChart.setUsePercentValues(true);
+        emotionSubChart.setUsePercentValues(false);
         emotionSubChart.getDescription().setEnabled(false);
         emotionSubChart.setExtraOffsets(5f, 10f, 5f, 5f);
         emotionSubChart.setDragDecelerationFrictionCoef(0.95f);
@@ -167,6 +167,22 @@ public class FragmentEmotion extends Fragment {
         ImageView posBestCommDisLikeImg5 = view.findViewById(R.id.posBestCommDisLikeImg5);
         TextView posBestCommLike5 = view.findViewById(R.id.posBestCommLike5);
         TextView posBestCommDisLike5 = view.findViewById(R.id.posBestCommDisLike5);
+
+//        ArrayList<HashMap> temp = new ArrayList<HashMap>(emotionCommentsArrayList.size());
+//        String packName = "com.example.myapplication";
+//        //긍정 키워드 탑 5 뽑기
+//        for(int i = 0; i < emotionCommentsArrayList.size(); i++){
+//            Object usrName = emotionCommentsArrayList.get(i).get("usrName");
+//            Object comments = emotionCommentsArrayList.get(i).get("comments");
+//            Object sympathyCount = emotionCommentsArrayList.get(i).get("sympathyCount");
+//            Object antipathyCount = emotionCommentsArrayList.get(i).get("antipathyCount");
+////            int id = getResources().getIdentifier("posBestCommId" + i+1, "id", packName);
+////            int con = getResources().getIdentifier("posBestCommCon" + i+1, "id", packName);
+////            int like = getResources().getIdentifier("posBestCommLike" + i+1, "id", packName);
+////            int dislike = getResources().getIdentifier("posBestCommDisLike" + i+1, "id", packName);
+//
+//            i
+//        }
 
         HashMap<String, String> map1 = emotionCommentsArrayList.get(0);
         HashMap<String, String> map2 = emotionCommentsArrayList.get(1);
