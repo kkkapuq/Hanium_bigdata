@@ -107,6 +107,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/posBestCommLikeImg1"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommLike1"
@@ -114,6 +115,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/posBestCommDisLikeImg1"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommDisLike1"
@@ -162,6 +164,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/posBestCommLikeImg2"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommLike2"
@@ -169,6 +172,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/posBestCommDisLikeImg2"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommDisLike2"
@@ -217,6 +221,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/posBestCommLikeImg3"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommLike3"
@@ -224,6 +229,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/posBestCommDisLikeImg3"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommDisLike3"
@@ -272,6 +278,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/posBestCommLikeImg4"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommLike4"
@@ -279,6 +286,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/posBestCommDisLikeImg4"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommDisLike4"
@@ -327,6 +335,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/posBestCommLikeImg5"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommLike5"
@@ -334,6 +343,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/posBestCommDisLikeImg5"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/posBestCommDisLike5"
@@ -394,6 +404,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/negBestCommLikeImg1"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommLike1"
@@ -401,6 +412,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/negBestCommDisLikeImg1"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommDisLike1"
@@ -449,6 +461,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/negBestCommLikeImg2"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommLike2"
@@ -456,6 +469,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/negBestCommDisLikeImg2"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommDisLike2"
@@ -504,6 +518,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/negBestCommLikeImg3"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommLike3"
@@ -511,6 +526,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/negBestCommDisLikeImg3"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommDisLike3"
@@ -559,6 +575,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/negBestCommLikeImg4"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommLike4"
@@ -566,6 +583,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/negBestCommDisLikeImg4"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommDisLike4"
@@ -614,6 +632,7 @@
                             android:text="따봉 수" />
 
                         <ImageView
+                            android:id="@+id/negBestCommLikeImg5"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommLike5"
@@ -621,6 +640,7 @@
                             android:src="@drawable/comm_like"/>
 
                         <ImageView
+                            android:id="@+id/negBestCommDisLikeImg5"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_toLeftOf="@id/negBestCommDisLike5"

@@ -131,6 +131,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -197,6 +198,11 @@ public final class MainActivity extends AppCompatActivity {
         Button btn_search = findViewById(R.id.btn_search);
         final String newsUrl = get_Url.getText().toString();
 
+        //로딩창 객체 생성
+        final LoadingDialog loadingDialog = new LoadingDialog(this);
+        //로딩창을 투명하게
+        loadingDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
 //        getnewsUrl();
 
         btn_search.setOnClickListener((new OnClickListener() {
@@ -211,8 +217,10 @@ public final class MainActivity extends AppCompatActivity {
                 }
 
                 //로딩창 띄워주기
-                CheckTypesTask task = new CheckTypesTask();
-                task.execute();
+//                CheckTypesTask task = new CheckTypesTask();
+//                task.execute();
+                loadingDialog.show();
+
 
                 if(get_Url.getText() != null)
                 {
@@ -234,7 +242,7 @@ public final class MainActivity extends AppCompatActivity {
 
                     //2.데이터 분석 AsyncTask(TimeSleep)
                     try{
-                        Thread.sleep(10000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -252,35 +260,37 @@ public final class MainActivity extends AppCompatActivity {
 
     }
 
-    //로딩창 구현
-    private class CheckTypesTask extends AsyncTask<Void, Void, Void>{
-        ProgressDialog asyncDialog = new ProgressDialog(MainActivity.this);
-
-        @Override
-        protected void onPreExecute(){
-            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            asyncDialog.setMessage("결과 화면을 구성중입니다...");
-
-            asyncDialog.show();
-            super.onPreExecute();
-        }
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try{
-                //여기에 통신관련 소스 넣고 콜백으로 받아야됨
-                    Thread.sleep(10000);
-            } catch (InterruptedException e){
-                e.printStackTrace();
-            }
-            return null;
-        }
-        @Override
-        protected void onPostExecute(Void result){
-
-            asyncDialog.dismiss();
-            super.onPostExecute(result);
-        }
-    }
+//    //로딩창 구현
+//    private class CheckTypesTask extends AsyncTask<Void, Void, Void>{
+//        ProgressDialog asyncDialog = new ProgressDialog(MainActivity.this);
+//
+//        @Override
+//        protected void onPreExecute(){
+//            super.onPreExecute();
+//            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//            asyncDialog.setMessage("결과 화면을 구성중입니다...");
+//
+//            asyncDialog.show();
+//        }
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            for(int i = 0 ; i < 4 ; i++) {
+//                try {
+//                    //여기에 통신관련 소스 넣고 콜백으로 받아야됨
+//                    Thread.sleep(500);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            return null;
+//        }
+//        @Override
+//        protected void onPostExecute(Void result){
+//
+//            asyncDialog.dismiss();
+//            super.onPostExecute(result);
+//        }
+//    }
 
 //    private class GetNewsInfoTask extends AsyncTask<String, Void, String> {
 //        @Override

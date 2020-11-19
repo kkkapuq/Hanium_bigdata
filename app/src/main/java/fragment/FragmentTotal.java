@@ -149,6 +149,16 @@ public class FragmentTotal extends Fragment {
 
     public void timeLineChart(View view) {
         ArrayList timeValues = new ArrayList();
+//
+//        //타임라인 그래프 생성
+//        for(int i = 0; i < timeAnalysisArrayList.size(); i++){
+//            Object temp = timeAnalysisArrayList.get(i).get("emotionBool");
+//            if(String.valueOf(temp).equals("1")){
+//                Object count = timeAnalysisArrayList.get(i).get("count");
+//                Object keyword = timeAnalysisArrayList.get(i).get("keyword");
+//                timeValues.add(new Entry(Float.parseFloat(count.toString()), Float.parseFloat(keyword.toString()));
+//            }
+//        }
 
         HashMap<String, String> map1 = timeAnalysisArrayList.get(0);
         HashMap<String, String> map2 = timeAnalysisArrayList.get(1);
@@ -179,6 +189,16 @@ public class FragmentTotal extends Fragment {
         xLabel.add("6~12시");
         xLabel.add("12~18시");
         xLabel.add("18~0시");
+
+//        //타임라인 그래프 생성
+//        for(int i = 0; i < timeAnalysisArrayList.size(); i++){
+//            Object temp = timeAnalysisArrayList.get(i).get("emotionBool");
+//            if(String.valueOf(temp).equals("1")){
+//                Object count = timeAnalysisArrayList.get(i).get("count");
+//                Object keyword = timeAnalysisArrayList.get(i).get("keyword");
+//                timeValues.add(new Entry(Float.parseFloat(count.toString()), Float.parseFloat(keyword.toString()));
+//            }
+//        }
 
         XAxis xAxis = timeLineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
