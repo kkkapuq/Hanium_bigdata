@@ -168,21 +168,26 @@ public class FragmentEmotion extends Fragment {
         TextView posBestCommLike5 = view.findViewById(R.id.posBestCommLike5);
         TextView posBestCommDisLike5 = view.findViewById(R.id.posBestCommDisLike5);
 
-//        ArrayList<HashMap> temp = new ArrayList<HashMap>(emotionCommentsArrayList.size());
-//        String packName = "com.example.myapplication";
-//        //긍정 키워드 탑 5 뽑기
-//        for(int i = 0; i < emotionCommentsArrayList.size(); i++){
-//            Object usrName = emotionCommentsArrayList.get(i).get("usrName");
-//            Object comments = emotionCommentsArrayList.get(i).get("comments");
-//            Object sympathyCount = emotionCommentsArrayList.get(i).get("sympathyCount");
-//            Object antipathyCount = emotionCommentsArrayList.get(i).get("antipathyCount");
-////            int id = getResources().getIdentifier("posBestCommId" + i+1, "id", packName);
-////            int con = getResources().getIdentifier("posBestCommCon" + i+1, "id", packName);
-////            int like = getResources().getIdentifier("posBestCommLike" + i+1, "id", packName);
-////            int dislike = getResources().getIdentifier("posBestCommDisLike" + i+1, "id", packName);
-//
-//            i
-//        }
+        ArrayList<HashMap> temp = new ArrayList<HashMap>(emotionCommentsArrayList.size());
+        String packName = "com.example.myapplication";
+        //긍정 키워드 탑 5 뽑기
+        for(int i = 0; i < emotionCommentsArrayList.size(); i++){
+            HashMap usrName = emotionCommentsArrayList.get(i);
+            HashMap comments = emotionCommentsArrayList.get(i);
+            HashMap sympathyCount = emotionCommentsArrayList.get(i);
+            HashMap antipathyCount = emotionCommentsArrayList.get(i);
+
+            temp.add(usrName);
+            temp.add(comments);
+            temp.add(sympathyCount);
+            temp.add(antipathyCount);
+
+//            int id = getResources().getIdentifier("posBestCommId" + i+1, "id", packName);
+//            int con = getResources().getIdentifier("posBestCommCon" + i+1, "id", packName);
+//            int like = getResources().getIdentifier("posBestCommLike" + i+1, "id", packName);
+//            int dislike = getResources().getIdentifier("posBestCommDisLike" + i+1, "id", packName);
+
+        }
 
         HashMap<String, String> map1 = emotionCommentsArrayList.get(0);
         HashMap<String, String> map2 = emotionCommentsArrayList.get(1);
