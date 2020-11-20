@@ -151,37 +151,23 @@ public class FragmentTotal extends Fragment {
         ArrayList timeValues = new ArrayList();
 
 
-//        int[] timeLineData = new int[24];
-//        //각 시간대별 댓글 수를 Array에 삽입
-//        for(int i = 0; i < timeAnalysisArrayList.size(); i++){
-//            Object temp = timeAnalysisArrayList.get(i).get("time");
-//            String time = temp.toString();
-//            temp = timeAnalysisArrayList.get(i).get("count");
-//            String count = temp.toString();
-//
-//            int commTime = Integer.parseInt(time);
-//            int commCount = Integer.parseInt(count);
-//
-//            timeLineData[commTime] = commCount;
-//        }
-//
-//        for(int i = 0 ; i < timeLineData.length; i++){
-//            timeValues.add(new Entry(i, timeLineData[i]);
-//        }
+        int[] timeLineData = new int[24];
+        //각 시간대별 댓글 수를 Array에 삽입
+        for(int i = 0; i < timeAnalysisArrayList.size(); i++){
+            Object temp = timeAnalysisArrayList.get(i).get("time");
+            String time = temp.toString();
+            temp = timeAnalysisArrayList.get(i).get("count");
+            String count = temp.toString();
 
-        HashMap<String, String> map1 = timeAnalysisArrayList.get(0);
-        HashMap<String, String> map2 = timeAnalysisArrayList.get(1);
-        HashMap<String, String> map3 = timeAnalysisArrayList.get(2);
-        HashMap<String, String> map4 = timeAnalysisArrayList.get(3);
+            int commTime = Integer.parseInt(time);
+            int commCount = Integer.parseInt(count);
 
-        Entry timeLine1 = new Entry(0.0F, Float.parseFloat(map1.get("count")));
-        timeValues.add(timeLine1);
-        Entry timeLine2 = new Entry(1.0F, Float.parseFloat(map2.get("count")));
-        timeValues.add(timeLine2);
-        Entry timeLine3 = new Entry(2.0F, Float.parseFloat(map3.get("count")));
-        timeValues.add(timeLine3);
-        Entry timeLine4 = new Entry(3.0F, Float.parseFloat(map4.get("count")));
-        timeValues.add(timeLine4);
+            timeLineData[commTime] = commCount;
+        }
+
+        for(int i = 0 ; i < timeLineData.length; i++){
+            timeValues.add(new Entry(i, timeLineData[i]));
+        }
 
         LineChart timeLineChart = view.findViewById(R.id.timeLineChart);
 
@@ -194,30 +180,6 @@ public class FragmentTotal extends Fragment {
         timeDataset.add(setTime);
 
         final ArrayList<String> xLabel = new ArrayList<>();
-//        xLabel.add("00시");
-//        xLabel.add("01시");
-//        xLabel.add("02시");
-//        xLabel.add("03시");
-//        xLabel.add("04시");
-//        xLabel.add("05시");
-//        xLabel.add("06시");
-//        xLabel.add("07시");
-//        xLabel.add("08시");
-//        xLabel.add("09시");
-//        xLabel.add("10시");
-//        xLabel.add("11시");
-//        xLabel.add("12시");
-//        xLabel.add("13시");
-//        xLabel.add("14시");
-//        xLabel.add("15시");
-//        xLabel.add("16시");
-//        xLabel.add("17시");
-//        xLabel.add("18시");
-//        xLabel.add("19시");
-//        xLabel.add("20시");
-//        xLabel.add("21시");
-//        xLabel.add("22시");
-//        xLabel.add("23시");
 
         for(int i = 0; i < 24; i++){
             xLabel.add(String.format("%02d",i) + "시");
@@ -236,6 +198,7 @@ public class FragmentTotal extends Fragment {
         xAxis.setValueFormatter(formatter);
 
         LineData timeData = new LineData((List) timeDataset);
+        timeLineChart.animateXY(5000, 5000, Easing.EaseInOutCubic);
         timeLineChart.setData(timeData);
         timeLineChart.invalidate();
     }
