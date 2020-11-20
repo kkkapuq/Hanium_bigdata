@@ -1,3 +1,4 @@
+
 package com.example.myapplication;
 
 import android.app.Activity;
@@ -71,3 +72,4 @@ public class LoadingActivity extends Activity {
         startLoading();
     }
 }
+
