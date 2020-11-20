@@ -422,10 +422,10 @@ public final class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            super.onPostExecute(s);
             JsonParsing();
 
             startActivity(resultIntent);
+            super.onPostExecute(s);
         }
 
         @Override

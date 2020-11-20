@@ -179,28 +179,33 @@ public class FragmentEmotion extends Fragment {
         for(int i = 0; i < emotionCommentsArrayList.size(); i++){
             if(cnt == 5)
                 break;
-            String usrName = emotionCommentsArrayList.get(i).get("usrName").toString();
-            String comments = emotionCommentsArrayList.get(i).get("comments").toString();
-            String sympathyCount = emotionCommentsArrayList.get(i).get("sympathyCount").toString();
-            String antipathyCount = emotionCommentsArrayList.get(i).get("antipathyCount").toString();
+            if(emotionCommentsArrayList.get(i).get("emotionBool").toString().equals("1")){
+                String usrName = emotionCommentsArrayList.get(i).get("usrName").toString();
+                String comments = emotionCommentsArrayList.get(i).get("comments").toString();
+                String sympathyCount = emotionCommentsArrayList.get(i).get("sympathyCount").toString();
+                String antipathyCount = emotionCommentsArrayList.get(i).get("antipathyCount").toString();
 
-            int id = getResources().getIdentifier("posBestCommId" + (i+1), "id", getActivity().getPackageName());
-            int con = getResources().getIdentifier("posBestCommCon" + (i+1), "id", getActivity().getPackageName());
-            int like = getResources().getIdentifier("posBestCommLike" + (i+1), "id", getActivity().getPackageName());
-            int dislike = getResources().getIdentifier("posBestCommDisLike" + (i+1), "id", getActivity().getPackageName());
+                int id = getResources().getIdentifier("posBestCommId" + (i+1), "id", getActivity().getPackageName());
+                int con = getResources().getIdentifier("posBestCommCon" + (i+1), "id", getActivity().getPackageName());
+                int like = getResources().getIdentifier("posBestCommLike" + (i+1), "id", getActivity().getPackageName());
+                int dislike = getResources().getIdentifier("posBestCommDisLike" + (i+1), "id", getActivity().getPackageName());
 
-            commId[i] = view.findViewById(id);
-            commCon[i] = view.findViewById(con);
-            commLike[i] = view.findViewById(like);
-            commDislike[i] = view.findViewById(dislike);
+                commId[i] = view.findViewById(id);
+                commCon[i] = view.findViewById(con);
+                commLike[i] = view.findViewById(like);
+                commDislike[i] = view.findViewById(dislike);
 
-            if(commId[i] == null)
-                break;
-            commId[i].setText(usrName);
-            commCon[i].setText(comments);
-            commLike[i].setText(sympathyCount);
-            commDislike[i].setText(antipathyCount);
-            cnt++;
+                if(commId[i] == null)
+                    break;
+                commId[i].setText(usrName);
+                commCon[i].setText(comments);
+                commLike[i].setText(sympathyCount);
+                commDislike[i].setText(antipathyCount);
+                cnt++;
+            }
+            else {
+                continue;
+            }
         }
 
 //        HashMap<String, String> map1 = emotionCommentsArrayList.get(0);
@@ -242,33 +247,41 @@ public class FragmentEmotion extends Fragment {
         TextView[] commDislike = new TextView[emotionCommentsArrayList.size()];
 
         int cnt = 0;
+        int negIdCnt = 1;
 
-        //긍정 댓글 탑 5 뽑기
+        //부정 댓글 탑 5 뽑기
         for(int i = 0; i < emotionCommentsArrayList.size(); i++){
             if(cnt == 5)
                 break;
-            String usrName = emotionCommentsArrayList.get(i).get("usrName").toString();
-            String comments = emotionCommentsArrayList.get(i).get("comments").toString();
-            String sympathyCount = emotionCommentsArrayList.get(i).get("sympathyCount").toString();
-            String antipathyCount = emotionCommentsArrayList.get(i).get("antipathyCount").toString();
+            if(emotionCommentsArrayList.get(i).get("emotionBool").toString().equals("0")){
+                String usrName = emotionCommentsArrayList.get(i).get("usrName").toString();
+                String comments = emotionCommentsArrayList.get(i).get("comments").toString();
+                String sympathyCount = emotionCommentsArrayList.get(i).get("sympathyCount").toString();
+                String antipathyCount = emotionCommentsArrayList.get(i).get("antipathyCount").toString();
 
-            int id = getResources().getIdentifier("negBestCommId" + (i+1), "id", getActivity().getPackageName());
-            int con = getResources().getIdentifier("negBestCommCon" + (i+1), "id", getActivity().getPackageName());
-            int like = getResources().getIdentifier("negBestCommLike" + (i+1), "id", getActivity().getPackageName());
-            int dislike = getResources().getIdentifier("negBestCommDisLike" + (i+1), "id", getActivity().getPackageName());
+                int id = getResources().getIdentifier("negBestCommId" + (i - (i-negIdCnt)), "id", getActivity().getPackageName());
+                int con = getResources().getIdentifier("negBestCommCon" + (i- (i-negIdCnt)), "id", getActivity().getPackageName());
+                int like = getResources().getIdentifier("negBestCommLike" + (i- (i-negIdCnt)), "id", getActivity().getPackageName());
+                int dislike = getResources().getIdentifier("negBestCommDisLike" + (i- (i-negIdCnt)), "id", getActivity().getPackageName());
 
-            commId[i] = view.findViewById(id);
-            commCon[i] = view.findViewById(con);
-            commLike[i] = view.findViewById(like);
-            commDislike[i] = view.findViewById(dislike);
+                negIdCnt++;
 
-            if(commId[i] == null)
-                break;
-            commId[i].setText(usrName);
-            commCon[i].setText(comments);
-            commLike[i].setText(sympathyCount);
-            commDislike[i].setText(antipathyCount);
-            cnt++;
+                commId[i] = view.findViewById(id);
+                commCon[i] = view.findViewById(con);
+                commLike[i] = view.findViewById(like);
+                commDislike[i] = view.findViewById(dislike);
+
+                if(commId[i] == null)
+                    break;
+                commId[i].setText(usrName);
+                commCon[i].setText(comments);
+                commLike[i].setText(sympathyCount);
+                commDislike[i].setText(antipathyCount);
+                cnt++;
+            }
+            else {
+                continue;
+            }
         }
 
 
