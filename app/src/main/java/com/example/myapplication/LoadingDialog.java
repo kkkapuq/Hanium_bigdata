@@ -1,17 +1,16 @@
 package com.example.myapplication;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.view.Window;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class LoadingDialog extends AppCompatActivity {
-    public void progressON() {
-        LoadingApplication.getInstance().progressON(this, null);
-    }
-
-    public void progressON(String message) {
-        LoadingApplication.getInstance().progressON(this, message);
-    }
-
-    public void progressOFF() {
-        LoadingApplication.getInstance().progressOFF();
+public class LoadingDialog extends Dialog {
+    public LoadingDialog(Context context){
+        super(context);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.dialog_loading);
     }
 }

@@ -1,10 +1,13 @@
 package fragment;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
@@ -55,11 +58,11 @@ public class FragmentEmotion extends Fragment {
 
         HashMap<String, String> map = tnewsArrayList.get(0);
 
-        emotionValues.add(new PieEntry(Float.parseFloat(map.get("emotion_like")), "좋아요"));
-        emotionValues.add(new PieEntry(Float.parseFloat(map.get("emotion_nice")), "최고예요"));
-        emotionValues.add(new PieEntry(Float.parseFloat(map.get("emotion_sad")), "슬퍼요"));
-        emotionValues.add(new PieEntry(Float.parseFloat(map.get("emotion_angry")), "화나요"));
-        emotionValues.add(new PieEntry(Float.parseFloat(map.get("emotion_wantAfter")), "후속기사 원해요"));
+        emotionValues.add(new PieEntry(10.0f, "좋아요"));
+        emotionValues.add(new PieEntry(2.5f, "최고예요"));
+        emotionValues.add(new PieEntry(6.1f, "슬퍼요"));
+        emotionValues.add(new PieEntry(46.1f, "화나요"));
+        emotionValues.add(new PieEntry(29.6f, "후속기사 원해요"));
 
         emotionChart.animateY(2000, Easing.EaseInOutCubic);
 
@@ -89,7 +92,7 @@ public class FragmentEmotion extends Fragment {
 
     public void emotionSubChart(View view){
         PieChart emotionSubChart = view.findViewById(R.id.emotionSubChart);
-        emotionSubChart.setUsePercentValues(true);
+        emotionSubChart.setUsePercentValues(false);
         emotionSubChart.getDescription().setEnabled(false);
         emotionSubChart.setExtraOffsets(5f, 10f, 5f, 5f);
         emotionSubChart.setDragDecelerationFrictionCoef(0.95f);
@@ -130,119 +133,225 @@ public class FragmentEmotion extends Fragment {
     }
 
     public void posBestCommentSetter(View view){
-        TextView posBestCommId1 = view.findViewById(R.id.posBestCommId1);
-        TextView posBestCommCon1 = view.findViewById(R.id.posBestCommCon1);
-        TextView posBestCommLike1 = view.findViewById(R.id.posBestCommLike1);
-        TextView posBestCommDisLike1 = view.findViewById(R.id.posBestCommDisLike1);
+//        TextView posBestCommId1 = view.findViewById(R.id.posBestCommId1);
+//        TextView posBestCommCon1 = view.findViewById(R.id.posBestCommCon1);
+//        ImageView posBestCommLikeImg1 = view.findViewById(R.id.posBestCommLikeImg1);
+//        ImageView posBestCommDisLikeImg1 = view.findViewById(R.id.posBestCommDisLikeImg1);
+//        TextView posBestCommLike1 = view.findViewById(R.id.posBestCommLike1);
+//        TextView posBestCommDisLike1 = view.findViewById(R.id.posBestCommDisLike1);
+//
+//        TextView posBestCommId2 = view.findViewById(R.id.posBestCommId2);
+//        TextView posBestCommCon2 = view.findViewById(R.id.posBestCommCon2);
+//        ImageView posBestCommLikeImg2 = view.findViewById(R.id.posBestCommLikeImg2);
+//        ImageView posBestCommDisLikeImg2 = view.findViewById(R.id.posBestCommDisLikeImg2);
+//        TextView posBestCommLike2 = view.findViewById(R.id.posBestCommLike2);
+//        TextView posBestCommDisLike2 = view.findViewById(R.id.posBestCommDisLike2);
+//
+//        TextView posBestCommId3= view.findViewById(R.id.posBestCommId3);
+//        TextView posBestCommCon3 = view.findViewById(R.id.posBestCommCon3);
+//        ImageView posBestCommLikeImg3 = view.findViewById(R.id.posBestCommLikeImg3);
+//        ImageView posBestCommDisLikeImg3 = view.findViewById(R.id.posBestCommDisLikeImg3);
+//        TextView posBestCommLike3 = view.findViewById(R.id.posBestCommLike3);
+//        TextView posBestCommDisLike3 = view.findViewById(R.id.posBestCommDisLike3);
+//
+//        TextView posBestCommId4 = view.findViewById(R.id.posBestCommId4);
+//        TextView posBestCommCon4 = view.findViewById(R.id.posBestCommCon4);
+//        ImageView posBestCommLikeImg4 = view.findViewById(R.id.posBestCommLikeImg4);
+//        ImageView posBestCommDisLikeImg4 = view.findViewById(R.id.posBestCommDisLikeImg4);
+//        TextView posBestCommLike4 = view.findViewById(R.id.posBestCommLike4);
+//        TextView posBestCommDisLike4 = view.findViewById(R.id.posBestCommDisLike4);
+//
+//        TextView posBestCommId5 = view.findViewById(R.id.posBestCommId5);
+//        TextView posBestCommCon5 = view.findViewById(R.id.posBestCommCon5);
+//        ImageView posBestCommLikeImg5 = view.findViewById(R.id.posBestCommLikeImg5);
+//        ImageView posBestCommDisLikeImg5 = view.findViewById(R.id.posBestCommDisLikeImg5);
+//        TextView posBestCommLike5 = view.findViewById(R.id.posBestCommLike5);
+//        TextView posBestCommDisLike5 = view.findViewById(R.id.posBestCommDisLike5);
 
-        TextView posBestCommId2 = view.findViewById(R.id.posBestCommId2);
-        TextView posBestCommCon2 = view.findViewById(R.id.posBestCommCon2);
-        TextView posBestCommLike2 = view.findViewById(R.id.posBestCommLike2);
-        TextView posBestCommDisLike2 = view.findViewById(R.id.posBestCommDisLike2);
+        TextView[] commId = new TextView[emotionCommentsArrayList.size()];
+        TextView[] commCon = new TextView[emotionCommentsArrayList.size()];
+        TextView[] commLike = new TextView[emotionCommentsArrayList.size()];
+        TextView[] commDislike = new TextView[emotionCommentsArrayList.size()];
 
-        TextView posBestCommId3= view.findViewById(R.id.posBestCommId3);
-        TextView posBestCommCon3 = view.findViewById(R.id.posBestCommCon3);
-        TextView posBestCommLike3 = view.findViewById(R.id.posBestCommLike3);
-        TextView posBestCommDisLike3 = view.findViewById(R.id.posBestCommDisLike3);
+        int cnt = 0;
 
-        TextView posBestCommId4 = view.findViewById(R.id.posBestCommId4);
-        TextView posBestCommCon4 = view.findViewById(R.id.posBestCommCon4);
-        TextView posBestCommLike4 = view.findViewById(R.id.posBestCommLike4);
-        TextView posBestCommDisLike4 = view.findViewById(R.id.posBestCommDisLike4);
+        //긍정 댓글 탑 5 뽑기
+        for(int i = 0; i < emotionCommentsArrayList.size(); i++){
+            if(cnt == 5)
+                break;
+            if(emotionCommentsArrayList.get(i).get("emotionBool").toString().equals("1")){
+                String usrName = emotionCommentsArrayList.get(i).get("usrName").toString();
+                String comments = emotionCommentsArrayList.get(i).get("comments").toString();
+                String sympathyCount = emotionCommentsArrayList.get(i).get("sympathyCount").toString();
+                String antipathyCount = emotionCommentsArrayList.get(i).get("antipathyCount").toString();
 
-        TextView posBestCommId5 = view.findViewById(R.id.posBestCommId5);
-        TextView posBestCommCon5 = view.findViewById(R.id.posBestCommCon5);
-        TextView posBestCommLike5 = view.findViewById(R.id.posBestCommLike5);
-        TextView posBestCommDisLike5 = view.findViewById(R.id.posBestCommDisLike5);
+                int id = getResources().getIdentifier("posBestCommId" + (i+1), "id", getActivity().getPackageName());
+                int con = getResources().getIdentifier("posBestCommCon" + (i+1), "id", getActivity().getPackageName());
+                int like = getResources().getIdentifier("posBestCommLike" + (i+1), "id", getActivity().getPackageName());
+                int dislike = getResources().getIdentifier("posBestCommDisLike" + (i+1), "id", getActivity().getPackageName());
 
-        HashMap<String, String> map1 = emotionCommentsArrayList.get(0);
-        HashMap<String, String> map2 = emotionCommentsArrayList.get(1);
-        HashMap<String, String> map3 = emotionCommentsArrayList.get(2);
-        HashMap<String, String> map4 = emotionCommentsArrayList.get(3);
-        HashMap<String, String> map5 = emotionCommentsArrayList.get(4);
+                commId[i] = view.findViewById(id);
+                commCon[i] = view.findViewById(con);
+                commLike[i] = view.findViewById(like);
+                commDislike[i] = view.findViewById(dislike);
 
-        posBestCommId1.setText("hwak****");
-        posBestCommCon1.setText(map1.get("comments"));
-        posBestCommLike1.setText("2036");
-        posBestCommDisLike1.setText("50");
+                if(commId[i] == null)
+                    break;
+                commId[i].setText(usrName);
+                commCon[i].setText(comments);
+                commLike[i].setText(sympathyCount);
+                commDislike[i].setText(antipathyCount);
+                cnt++;
+            }
+            else {
+                continue;
+            }
+        }
 
-        posBestCommId2.setText("dudd****");
-        posBestCommCon2.setText(map2.get("comments"));
-        posBestCommLike2.setText("151");
-        posBestCommDisLike2.setText("2");
-
-        posBestCommId3.setText("lhn0****");
-        posBestCommCon3.setText(map3.get("comments"));
-        posBestCommLike3.setText("74");
-        posBestCommDisLike3.setText("2");
-
-        posBestCommId4.setText("yo53****");
-        posBestCommCon4.setText(map4.get("comments"));
-        posBestCommLike4.setText("27");
-        posBestCommDisLike4.setText("0");
-
-        posBestCommId5.setText("simi****");
-        posBestCommCon5.setText(map5.get("comments"));
-        posBestCommLike5.setText("20");
-        posBestCommDisLike5.setText("1");
+//        HashMap<String, String> map1 = emotionCommentsArrayList.get(0);
+//        HashMap<String, String> map2 = emotionCommentsArrayList.get(1);
+//        HashMap<String, String> map3 = emotionCommentsArrayList.get(2);
+//        HashMap<String, String> map4 = emotionCommentsArrayList.get(3);
+//        HashMap<String, String> map5 = emotionCommentsArrayList.get(4);
+//
+//        posBestCommId1.setText(map1.get("usrName"));
+//        posBestCommCon1.setText(map1.get("comments"));
+//        posBestCommLike1.setText(map1.get("sympathyCount"));
+//        posBestCommDisLike1.setText(map1.get("antipathyCount"));
+//
+//        posBestCommId2.setText(map2.get("usrName"));
+//        posBestCommCon2.setText(map2.get("comments"));
+//        posBestCommLike2.setText(map2.get("sympathyCount"));
+//        posBestCommDisLike2.setText(map2.get("antipathyCount"));
+//
+//        posBestCommId3.setText(map3.get("usrName"));
+//        posBestCommCon3.setText(map3.get("comments"));
+//        posBestCommLike3.setText(map3.get("sympathyCount"));
+//        posBestCommDisLike3.setText(map3.get("antipathyCount"));
+//
+//        posBestCommId4.setText(map4.get("usrName"));
+//        posBestCommCon4.setText(map4.get("comments"));
+//        posBestCommLike4.setText(map4.get("sympathyCount"));
+//        posBestCommDisLike4.setText(map4.get("antipathyCount"));
+//
+//        posBestCommId5.setText(map5.get("usrName"));
+//        posBestCommCon5.setText(map5.get("comments"));
+//        posBestCommLike5.setText(map5.get("sympathyCount"));
+//        posBestCommDisLike5.setText(map5.get("antipathyCount"));
     }
     public void negBestCommentSetter(View view){
-        TextView negBestCommId1 = view.findViewById(R.id.negBestCommId1);
-        TextView negBestCommCon1 = view.findViewById(R.id.negBestCommCon1);
-        TextView negBestCommLike1 = view.findViewById(R.id.negBestCommLike1);
-        TextView negBestCommDisLike1 = view.findViewById(R.id.negBestCommDisLike1);
 
-        TextView negBestCommId2 = view.findViewById(R.id.negBestCommId2);
-        TextView negBestCommCon2 = view.findViewById(R.id.negBestCommCon2);
-        TextView negBestCommLike2 = view.findViewById(R.id.negBestCommLike2);
-        TextView negBestCommDisLike2 = view.findViewById(R.id.negBestCommDisLike2);
+        TextView[] commId = new TextView[emotionCommentsArrayList.size()];
+        TextView[] commCon = new TextView[emotionCommentsArrayList.size()];
+        TextView[] commLike = new TextView[emotionCommentsArrayList.size()];
+        TextView[] commDislike = new TextView[emotionCommentsArrayList.size()];
 
-        TextView negBestCommId3= view.findViewById(R.id.negBestCommId3);
-        TextView negBestCommCon3 = view.findViewById(R.id.negBestCommCon3);
-        TextView negBestCommLike3 = view.findViewById(R.id.negBestCommLike3);
-        TextView negBestCommDisLike3 = view.findViewById(R.id.negBestCommDisLike3);
+        int cnt = 0;
+        int negIdCnt = 1;
 
-        TextView negBestCommId4 = view.findViewById(R.id.negBestCommId4);
-        TextView negBestCommCon4 = view.findViewById(R.id.negBestCommCon4);
-        TextView negBestCommLike4 = view.findViewById(R.id.negBestCommLike4);
-        TextView negBestCommDisLike4 = view.findViewById(R.id.negBestCommDisLike4);
+        //부정 댓글 탑 5 뽑기
+        for(int i = 0; i < emotionCommentsArrayList.size(); i++){
+            if(cnt == 5)
+                break;
+            if(emotionCommentsArrayList.get(i).get("emotionBool").toString().equals("0")){
+                String usrName = emotionCommentsArrayList.get(i).get("usrName").toString();
+                String comments = emotionCommentsArrayList.get(i).get("comments").toString();
+                String sympathyCount = emotionCommentsArrayList.get(i).get("sympathyCount").toString();
+                String antipathyCount = emotionCommentsArrayList.get(i).get("antipathyCount").toString();
 
-        TextView negBestCommId5 = view.findViewById(R.id.negBestCommId5);
-        TextView negBestCommCon5 = view.findViewById(R.id.negBestCommCon5);
-        TextView negBestCommLike5 = view.findViewById(R.id.negBestCommLike5);
-        TextView negBestCommDisLike5 = view.findViewById(R.id.negBestCommDisLike5);
+                int id = getResources().getIdentifier("negBestCommId" + (i - (i-negIdCnt)), "id", getActivity().getPackageName());
+                int con = getResources().getIdentifier("negBestCommCon" + (i- (i-negIdCnt)), "id", getActivity().getPackageName());
+                int like = getResources().getIdentifier("negBestCommLike" + (i- (i-negIdCnt)), "id", getActivity().getPackageName());
+                int dislike = getResources().getIdentifier("negBestCommDisLike" + (i- (i-negIdCnt)), "id", getActivity().getPackageName());
 
-        HashMap<String, String> map1 = emotionCommentsArrayList.get(5);
-        HashMap<String, String> map2 = emotionCommentsArrayList.get(6);
-        HashMap<String, String> map3 = emotionCommentsArrayList.get(7);
-        HashMap<String, String> map4 = emotionCommentsArrayList.get(8);
-        HashMap<String, String> map5 = emotionCommentsArrayList.get(9);
+                negIdCnt++;
 
-        negBestCommId1.setText("lgh6****");
-        negBestCommCon1.setText(map1.get("comments"));
-        negBestCommLike1.setText("709");
-        negBestCommDisLike1.setText("13");
+                commId[i] = view.findViewById(id);
+                commCon[i] = view.findViewById(con);
+                commLike[i] = view.findViewById(like);
+                commDislike[i] = view.findViewById(dislike);
 
-        negBestCommId2.setText("ssel****");
-        negBestCommCon2.setText(map2.get("comments"));
-        negBestCommLike2.setText("526");
-        negBestCommDisLike2.setText("40");
+                if(commId[i] == null)
+                    break;
+                commId[i].setText(usrName);
+                commCon[i].setText(comments);
+                commLike[i].setText(sympathyCount);
+                commDislike[i].setText(antipathyCount);
+                cnt++;
+            }
+            else {
+                continue;
+            }
+        }
 
-        negBestCommId3.setText("syti****");
-        negBestCommCon3.setText(map3.get("comments"));
-        negBestCommLike3.setText("290");
-        negBestCommDisLike3.setText("5");
 
-        negBestCommId4.setText("mona****");
-        negBestCommCon4.setText(map4.get("comments"));
-        negBestCommLike4.setText("94");
-        negBestCommDisLike4.setText("1");
+//        TextView negBestCommId1 = view.findViewById(R.id.negBestCommId1);
+//        TextView negBestCommCon1 = view.findViewById(R.id.negBestCommCon1);
+//        ImageView negBestCommLikeImg1 = view.findViewById(R.id.posBestCommLikeImg1);
+//        ImageView negBestCommDisLikeImg1 = view.findViewById(R.id.posBestCommDisLikeImg1);
+//        TextView negBestCommLike1 = view.findViewById(R.id.negBestCommLike1);
+//        TextView negBestCommDisLike1 = view.findViewById(R.id.negBestCommDisLike1);
+//
+//        TextView negBestCommId2 = view.findViewById(R.id.negBestCommId2);
+//        TextView negBestCommCon2 = view.findViewById(R.id.negBestCommCon2);
+//        ImageView negBestCommLikeImg2 = view.findViewById(R.id.negBestCommLikeImg2);
+//        ImageView negBestCommDisLikeImg2 = view.findViewById(R.id.negBestCommDisLikeImg2);
+//        TextView negBestCommLike2 = view.findViewById(R.id.negBestCommLike2);
+//        TextView negBestCommDisLike2 = view.findViewById(R.id.negBestCommDisLike2);
+//
+//        TextView negBestCommId3= view.findViewById(R.id.negBestCommId3);
+//        TextView negBestCommCon3 = view.findViewById(R.id.negBestCommCon3);
+//        ImageView negBestCommLikeImg3 = view.findViewById(R.id.negBestCommLikeImg3);
+//        ImageView negBestCommDisLikeImg3 = view.findViewById(R.id.negBestCommDisLikeImg3);
+//        TextView negBestCommLike3 = view.findViewById(R.id.negBestCommLike3);
+//        TextView negBestCommDisLike3 = view.findViewById(R.id.negBestCommDisLike3);
+//
+//        TextView negBestCommId4 = view.findViewById(R.id.negBestCommId4);
+//        TextView negBestCommCon4 = view.findViewById(R.id.negBestCommCon4);
+//        ImageView negBestCommLikeImg4 = view.findViewById(R.id.negBestCommLikeImg4);
+//        ImageView negBestCommDisLikeImg4 = view.findViewById(R.id.negBestCommDisLikeImg4);
+//        TextView negBestCommLike4 = view.findViewById(R.id.negBestCommLike4);
+//        TextView negBestCommDisLike4 = view.findViewById(R.id.negBestCommDisLike4);
+//
+//        TextView negBestCommId5 = view.findViewById(R.id.negBestCommId5);
+//        TextView negBestCommCon5 = view.findViewById(R.id.negBestCommCon5);
+//        ImageView negBestCommLikeImg5 = view.findViewById(R.id.negBestCommLikeImg5);
+//        ImageView negBestCommDisLikeImg5 = view.findViewById(R.id.negBestCommDisLikeImg5);
+//        TextView negBestCommLike5 = view.findViewById(R.id.negBestCommLike5);
+//        TextView negBestCommDisLike5 = view.findViewById(R.id.negBestCommDisLike5);
 
-        negBestCommId5.setText("syti****");
-        negBestCommCon5.setText(map5.get("comments"));
-        negBestCommLike5.setText("84");
-        negBestCommDisLike5.setText("3");
+//        HashMap<String, String> map1 = emotionCommentsArrayList.get(5);
+//        HashMap<String, String> map2 = emotionCommentsArrayList.get(6);
+//        HashMap<String, String> map3 = emotionCommentsArrayList.get(7);
+//        HashMap<String, String> map4 = emotionCommentsArrayList.get(8);
+//        HashMap<String, String> map5 = emotionCommentsArrayList.get(9);
+
+//        negBestCommId1.setText(map1.get("usrName"));
+//        negBestCommCon1.setText(map1.get("comments"));
+//        negBestCommLike1.setText(map1.get("sympathyCount"));
+//        negBestCommDisLike1.setText(map1.get("antipathyCount"));
+//
+//        negBestCommId2.setText(map2.get("usrName"));
+//        negBestCommCon2.setText(map2.get("comments"));
+//        negBestCommLike2.setText(map2.get("sympathyCount"));
+//        negBestCommDisLike2.setText(map2.get("antipathyCount"));
+//
+//        negBestCommId3.setText(map3.get("usrName"));
+//        negBestCommCon3.setText(map3.get("comments"));
+//        negBestCommLike3.setText(map3.get("sympathyCount"));
+//        negBestCommDisLike3.setText(map3.get("antipathyCount"));
+//
+//        negBestCommId4.setText(map4.get("usrName"));
+//        negBestCommCon4.setText(map4.get("comments"));
+//        negBestCommLike4.setText(map4.get("sympathyCount"));
+//        negBestCommDisLike4.setText(map4.get("antipathyCount"));
+//
+//        negBestCommId5.setText(map5.get("usrName"));
+//        negBestCommCon5.setText(map5.get("comments"));
+//        negBestCommLike5.setText(map5.get("sympathyCount"));
+//        negBestCommDisLike5.setText(map5.get("antipathyCount"));
     }
+
 
     @Nullable
     @Override

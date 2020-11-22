@@ -65,10 +65,10 @@ public class FragmentTotal extends Fragment {
         ArrayList sexValues = new ArrayList();
         HashMap<String, String> map = tnewsArrayList.get(0);
 
-        sexValues.add(new PieEntry(Float.parseFloat(map.get("male")), "남성"));
-        sexValues.add(new PieEntry(Float.parseFloat(map.get("female")), "여성"));
+        sexValues.add(new PieEntry(72.0f, "남성"));
+        sexValues.add(new PieEntry(28.0f, "여성"));
 
-        sexRateChart.animateY(2000, Easing.EaseInOutCubic);
+        sexRateChart.animateY(5000, Easing.EaseInOutCubic);
 
         final int[] sexColors = {
                 Color.parseColor("#2b88f2"),
@@ -99,12 +99,12 @@ public class FragmentTotal extends Fragment {
 
         HashMap<String, String> map = tnewsArrayList.get(0);
 
-        ageValues.add(new BarEntry(0.0f, Float.parseFloat(map.get("teen")), "10대"));
-        ageValues.add(new BarEntry(1.0F, Float.parseFloat(map.get("twenty")), "20대"));
-        ageValues.add(new BarEntry(2.0F, Float.parseFloat(map.get("thirty")), "30대"));
-        ageValues.add(new BarEntry(3.0F, Float.parseFloat(map.get("fourty")), "40대"));
-        ageValues.add(new BarEntry(4.0F, Float.parseFloat(map.get("fifty")), "50대"));
-        ageValues.add(new BarEntry(5.0F, Float.parseFloat(map.get("overSixty")), "60대 이상"));
+        ageValues.add(new BarEntry(0.0f, 10.0f, "10대"));
+        ageValues.add(new BarEntry(1.0F, 30.0f, "20대"));
+        ageValues.add(new BarEntry(2.0F, 40.1f, "30대"));
+        ageValues.add(new BarEntry(3.0F, 64.0f, "40대"));
+        ageValues.add(new BarEntry(4.0F, 35.0f, "50대"));
+        ageValues.add(new BarEntry(5.0F, 5.0f, "60대 이상"));
 
 
         final ArrayList<String> xLabel = new ArrayList<>();
@@ -122,7 +122,7 @@ public class FragmentTotal extends Fragment {
         xAxis.setGranularity(1f);
         xAxis.setGranularityEnabled(true);
 
-        ageRateChart.animateY(4000, Easing.EaseInOutCubic);
+        ageRateChart.animateY(5000, Easing.EaseInOutCubic);
 
         final int[] ageColors = {
                 Color.parseColor("#d4d4d4"),
@@ -150,34 +150,40 @@ public class FragmentTotal extends Fragment {
     public void timeLineChart(View view) {
         ArrayList timeValues = new ArrayList();
 
-        HashMap<String, String> map1 = timeAnalysisArrayList.get(0);
-        HashMap<String, String> map2 = timeAnalysisArrayList.get(1);
-        HashMap<String, String> map3 = timeAnalysisArrayList.get(2);
-        HashMap<String, String> map4 = timeAnalysisArrayList.get(3);
 
-        Entry timeLine1 = new Entry(0.0F, Float.parseFloat(map1.get("count")));
-        timeValues.add(timeLine1);
-        Entry timeLine2 = new Entry(1.0F, Float.parseFloat(map2.get("count")));
-        timeValues.add(timeLine2);
-        Entry timeLine3 = new Entry(2.0F, Float.parseFloat(map3.get("count")));
-        timeValues.add(timeLine3);
-        Entry timeLine4 = new Entry(3.0F, Float.parseFloat(map4.get("count")));
-        timeValues.add(timeLine4);
+        int[] timeLineData = new int[24];
+        //각 시간대별 댓글 수를 Array에 삽입
+        for(int i = 0; i < timeAnalysisArrayList.size(); i++){
+            Object temp = timeAnalysisArrayList.get(i).get("time");
+            String time = temp.toString();
+            temp = timeAnalysisArrayList.get(i).get("count");
+            String count = temp.toString();
+
+            int commTime = Integer.parseInt(time);
+            int commCount = Integer.parseInt(count);
+
+            timeLineData[commTime] = commCount;
+        }
+
+        for(int i = 0 ; i < timeLineData.length; i++){
+            timeValues.add(new Entry(i, timeLineData[i]));
+        }
 
         LineChart timeLineChart = view.findViewById(R.id.timeLineChart);
 
         LineDataSet setTime = new LineDataSet(timeValues, "시간대별 댓글");
         setTime.setAxisDependency(YAxis.AxisDependency.LEFT);
         setTime.setColor(Color.parseColor("#c39797"));
+        setTime.setLineWidth(6f);
 
         ArrayList timeDataset = new ArrayList();
         timeDataset.add(setTime);
 
         final ArrayList<String> xLabel = new ArrayList<>();
-        xLabel.add("0~6시");
-        xLabel.add("6~12시");
-        xLabel.add("12~18시");
-        xLabel.add("18~0시");
+
+        for(int i = 0; i < 24; i++){
+            xLabel.add(String.format("%02d",i) + "시");
+        }
 
         XAxis xAxis = timeLineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -192,6 +198,7 @@ public class FragmentTotal extends Fragment {
         xAxis.setValueFormatter(formatter);
 
         LineData timeData = new LineData((List) timeDataset);
+        timeLineChart.animateXY(5000, 5000, Easing.EaseInOutCubic);
         timeLineChart.setData(timeData);
         timeLineChart.invalidate();
     }
