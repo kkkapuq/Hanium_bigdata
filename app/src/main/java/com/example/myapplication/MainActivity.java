@@ -684,8 +684,9 @@ public final class MainActivity extends AppCompatActivity {
                 String neutral = item.getString("neutral");
                 String positive = item.getString("positive");
                 String negative = item.getString("negative");
+                String title = item.getString("title");
 
-                Log.e("JSON : ",  neutral + ", "+ positive+ ", " + negative);
+                Log.e("JSON : ",  neutral + ", "+ positive+ ", " + negative + ", " + title);
 
                 HashMap<String,String> hashMap = new HashMap<>();
                 //Log.e("HASH","FINISH");
@@ -693,6 +694,7 @@ public final class MainActivity extends AppCompatActivity {
                 hashMap.put("neutral",neutral);
                 hashMap.put("positive", positive);
                 hashMap.put("negative",negative);
+                hashMap.put("title",title);
                 //Log.e("PUT","FINISH");
 
                 emotionAnalysis.add(hashMap);
