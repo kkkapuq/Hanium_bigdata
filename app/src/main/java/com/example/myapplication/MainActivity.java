@@ -215,7 +215,8 @@ public final class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"인터넷을 먼저 연결해주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                //021/0002450344/110  = 16
+                //1100210002450344
                 //로딩창 띄워주기
 //                CheckTypesTask task = new CheckTypesTask();
 //                task.execute();
@@ -342,17 +343,33 @@ public final class MainActivity extends AppCompatActivity {
             String parameter = "crawling1.php";
             url = url + parameter;      //ip. . . . /crawling1.php/?link="12345"&imgName="abc"
             String getUrl = get_Url.getText().toString();
-            String[] DATA = getUrl.split("&");
-            String imgName = "";
-            for(int i = 1; i<DATA.length; i++)
-            {
-                String[] tmp = DATA[i].split("=");
 
-                if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
+            String imgName = "";
+
+            String firstUrl = getUrl.split("//")[1].split("[.]")[0];
+            if(firstUrl.equals("n"))
+            {
+                String[] DATA = getUrl.split("/");
+                String oid = DATA[DATA.length-2];
+                String[] DATA2 = DATA[DATA.length-1].split("[?]");
+                String aid = DATA2[0];
+                String sid = DATA2[1].split("=")[1];
+                imgName = sid + oid + aid;
+
+            }
+            else{
+                String[] DATA = getUrl.split("&");
+                for(int i = 1; i<DATA.length; i++)
                 {
-                    imgName += tmp[1];
+                    String[] tmp = DATA[i].split("=");
+
+                    if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
+                    {
+                        imgName += tmp[1];
+                    }
                 }
             }
+
 
             try{
                 String selectLink = "post&link=" + get_Url.getText().toString()+ "&imgName=" + imgName;
@@ -498,23 +515,40 @@ public final class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             String[] temp = new String[4];
-            for(int i = 0; i < temp.length; i++){
-                String url = strings[0];
-                Bitmap bitmap;
-                String getUrl = get_Url.getText().toString();
+            String getUrl = get_Url.getText().toString();
+
+            String imgName = "";
+            String firstUrl = getUrl.split("//")[1].split("[.]")[0];
+            if(firstUrl.equals("n"))
+            {
+                String[] DATA = getUrl.split("/");
+                String oid = DATA[DATA.length-2];
+                String[] DATA2 = DATA[DATA.length-1].split("[?]");
+                String aid = DATA2[0];
+                String sid = DATA2[1].split("=")[1];
+                imgName = sid + oid + aid;
+
+            }
+            else{
                 String[] DATA = getUrl.split("&");
-                String imgName = "";
-                for(int j = 1; j<DATA.length; j++)
+                for(int i = 1; i<DATA.length; i++)
                 {
-                    String[] tmp = DATA[j].split("=");
+                    String[] tmp = DATA[i].split("=");
 
                     if(tmp[0].equals("sid1") || tmp[0].equals("oid") || tmp[0].equals("aid"))
                     {
                         imgName += tmp[1];
                     }
                 }
+            }
+            imgName = "1"+imgName;; //+".png";
+
+            for(int i = 0; i < temp.length; i++){
+                String url = strings[0];
+                Bitmap bitmap;
+
 //            imgName = "0010230003574803" + ".png";
-                imgName = "1"+imgName; //+".png";
+
                 String parameter = "img/";
                 switch (i){
                     case 0:
