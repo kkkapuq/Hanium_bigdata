@@ -1,11 +1,8 @@
-package com.example.myapplication;
+package com.hanium.moamoa;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Window;
-import android.widget.ImageView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class LoadingDialog extends Dialog {
     public LoadingDialog(Context context){
