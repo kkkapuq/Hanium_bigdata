@@ -540,6 +540,8 @@ public final class MainActivity extends AppCompatActivity {
 
 
 
+
+
                 hashMap.put("no",no);
                 hashMap.put("url", url);
                 hashMap.put("articleName", articleName);
