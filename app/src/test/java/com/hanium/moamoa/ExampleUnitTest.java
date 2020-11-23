@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.hanium.moamoa;
 
 import org.junit.Test;
 
