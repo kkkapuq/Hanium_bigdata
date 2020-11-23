@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.myapplication.R;
+import com.hanium.moamoa.R;
 //import com.example.myapplication.ResultActivity;
 
 import java.util.ArrayList;

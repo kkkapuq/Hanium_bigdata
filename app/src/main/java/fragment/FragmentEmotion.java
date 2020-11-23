@@ -1,17 +1,13 @@
 package fragment;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplication.R;
-import com.example.myapplication.ResultActivity;
+import com.hanium.moamoa.R;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -21,12 +17,8 @@ import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 //import com.example.myapplication.ResultActivity;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -370,20 +362,5 @@ public class FragmentEmotion extends Fragment {
         negBestCommentSetter(view);
 
         return view;
-    }
-}
-
-class MapComparator implements Comparator<HashMap<String, String>> {
-
-    private final String key;
-
-    public MapComparator(String key) {
-        this.key = key;
-    }
-
-    @Override
-    public int compare(HashMap<String, String> first, HashMap<String, String> second) {
-        int result = first.get(key).compareTo(second.get(key));
-        return result;
     }
 }

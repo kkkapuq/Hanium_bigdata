@@ -1,38 +1,14 @@
 
-package com.example.myapplication;
+package com.hanium.moamoa;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,8 +47,7 @@ public class ResultActivity extends AppCompatActivity {
         emotionCommentsArrayList = (ArrayList<HashMap<String, String>>) intent.getSerializableExtra("emotionComments");
 
         TextView newsTitle = findViewById(R.id.articleTitle);
-//        newsTitle = tnewsArrayList.get()
-
+        newsTitle.setText(emotionAnalysisArrayList.get(0).get("title"));
         //워드클라우드 이미지 따로 받아오기
         String wordcloud = getIntent().getStringExtra("wordcloud");
         hashMap.put("wordcloud", wordcloud);
